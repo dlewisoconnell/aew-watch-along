@@ -8,15 +8,22 @@
 </head>
 <body>
 
-    <div id="total"></div>
-    <button onClick="clickCounter()">Add Point</button>
-    <button onClick="clickCounterSub()">Sub Point</button>
+    Kenny Omega
+    <button onClick="omegaclickCounter()">Add Point</button>
+    <div id="omegatotal"></div>
+    Jon Moxley
+    <button onClick="moxleyclickCounter()">Add Point</button>
+    <div id="moxleytotal"></div>
+    Adam Paige
+    <button onClick="paigeclickCounter()">Add Point</button>
+    <div id="paigetotal"></div>
+<p></p>
     <button onClick="clearValue()">Clear Points</button>
-    <p> The value of the option selected is:  
-
-        <span class="output"></span> 
-        <p>
-        <button onclick="getOption()"> Check option </button>
+<p></p>
+<input type="text" id="nameOfTeam" required="" placeholder="Team name" />
+<div id="allTeams"></div>
+<button id="adder" type="button">Add Team</button>
+<button onClick="clearTeams()">Clear Teams</button>
 
 <script>
 
@@ -25,43 +32,53 @@
   "1": {
         "id": 1,
         "name": "Kenny Omega",
-        "points": localStorage.points
+        "points": localStorage.omegapoints
        },
   "2": {
         "id": 2,
         "name": "Jon Moxley",
-        "points": 0
+        "points": localStorage.moxleypoints
        },
    "3": {
         "id": 3,
         "name": "Adam Paige",
-        "points": 0
+        "points": localStorage.paigepoints
    }
 
     };
 
-    console.log(wrestlers)
+    console.log(wrestlers);
+
+    if (typeof localStorage.omegapoints === "undefined") {
+    localStorage.omegapoints = 0;
+} ;
+if (typeof localStorage.moxleypoints === "undefined") {
+    localStorage.moxleypoints = 0;
+} ;
+if (typeof localStorage.paigepoints === "undefined") {
+    localStorage.paigepoints = 0;
+} ;
 
     window.localStorage.setItem("wrestlers", JSON.stringify(wrestlers));
 
-   var _select = document.createElement("select");
-    for (var key in wrestlers) {
-  var wrestler = wrestlers[key];
-  _select.options[_select.options.length] = new Option(wrestler.name, wrestler.id);
-}
+// var _select = document.createElement("select");
+//     for (var key in wrestlers) {
+//  var wrestler = wrestlers[key];
+//  _select.options[_select.options.length] = new Option(wrestler.name, wrestler.id);
+// }
 
-document.body.appendChild(_select);
 
-document.getElementById("total").innerHTML = localStorage.points;
+/////////////////////////////////////////////////////////////////////
+document.getElementById("omegatotal").innerHTML = localStorage.omegapoints;
 
-function clickCounter() {
-  if (localStorage.points) {
-    localStorage.points = Number(localStorage.points)+1;
+function omegaclickCounter() {
+  if (localStorage.omegapoints) {
+    localStorage.omegapoints = Number(localStorage.omegapoints)+1;
   } else {
-    localStorage.points = 1; 
+    localStorage.omegapoints = 1; 
 };
 
-document.getElementById("total").innerHTML = localStorage.points;
+document.getElementById("omegatotal").innerHTML = localStorage.omegapoints;
 };
 
 function clickCounterSub() {
@@ -71,15 +88,92 @@ function clickCounterSub() {
     localStorage.points = 1; 
 };
 
-document.getElementById("total").innerHTML = localStorage.points;
+};
+///////////////////////////////////////////////////////////////////
+document.getElementById("moxleytotal").innerHTML = localStorage.moxleypoints;
+
+function moxleyclickCounter() {
+  if (localStorage.moxleypoints) {
+    localStorage.moxleypoints = Number(localStorage.moxleypoints)+1;
+  } else {
+    localStorage.moxleypoints = 1; 
 };
 
+document.getElementById("moxleytotal").innerHTML = localStorage.moxleypoints;
+};
+
+function clickCounterSub() {
+  if (localStorage.moxleypoints) {
+    localStorage.moxleypoints = Number(localStorage.points)-1;
+  } else {
+    localStorage.moxleypoints = 1; 
+};
+
+document.getElementById("moxleytotal").innerHTML = localStorage.moxleypoints;
+};
+/////////////////////////////////////////////////////////////////////
+document.getElementById("paigetotal").innerHTML = localStorage.paigepoints;
+
+function paigeclickCounter() {
+  if (localStorage.paigepoints) {
+    localStorage.paigepoints = Number(localStorage.paigepoints)+1;
+  } else {
+    localStorage.paigepoints = 1; 
+};
+
+document.getElementById("paigetotal").innerHTML = localStorage.paigepoints;
+};
+
+function clickCounterSub() {
+  if (localStorage.moxleypoints) {
+    localStorage.moxleypoints = Number(localStorage.points)-1;
+  } else {
+    localStorage.moxleypoints = 1; 
+};
+
+document.getElementById("paigetotal").innerHTML = localStorage.paigepoints;
+};
+/////////////////////////////////////////////////////////////////////
 function clearValue() {
-    localStorage.points = 0;
-    document.getElementById("total").innerHTML = localStorage.points;
+    localStorage.omegapoints = 0;
+    localStorage.moxleypoints = 0;
+    localStorage.paigepoints = 0;
+    document.getElementById("omegatotal").innerHTML = localStorage.omegapoints;
+    document.getElementById("moxleytotal").innerHTML = localStorage.moxleypoints;
+    document.getElementById("paigetotal").innerHTML = localStorage.paigepoints;
 
 };
+/////////////////////////////////////////////////////////////////////
+var select = document.getElementById("selectTeam");
+var teams = [];
 
+const button = document.getElementById("adder");
+
+const name = document.getElementById("nameOfTeam");
+
+
+button.addEventListener("click", function() {
+  teams.push({
+		name: name.value,
+	})
+document.getElementById('nameOfTeam').value='';
+ localStorage.setItem("teams", JSON.stringify(teams));
+ document.getElementById("allTeams").innerHTML = localStorage.getItem("teams", JSON.stringify(teams));
+});
+
+console.log(localStorage.teams)
+
+var allTeams = localStorage.getItem("teams", JSON.stringify(Object.keys(teams)))
+document.getElementById("allTeams").innerHTML = allTeams
+
+
+function clearTeams() {
+    localStorage.setItem("teams", JSON.stringify(teams));
+    document.getElementById("allTeams").innerHTML = "";
+    location.reload()
+ }
+
+//////////////////////////////////////////////////////////////////
 </script>
 </body>
 </html>
