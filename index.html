@@ -47,6 +47,8 @@ var wrestlers =
 
     };
 
+  
+
 var teams =
 {
   "1": {
@@ -115,7 +117,6 @@ function clickCounterSub() {
     localStorage.points = 1; 
 };
 document.getElementById("omegatotal").innerHTML = localStorage.omegapoints;
-
 };
 //Jon Moxley/////////////////////////////////////////////////////////////////
 document.getElementById("moxleytotal").innerHTML = localStorage.moxleypoints;
@@ -189,10 +190,39 @@ document.getElementById("team1").innerHTML = localStorage.team1;
 document.getElementById('nameOfTeam').value='';
 
 function clearTeams() {
-    localStorage.setItem("teams", JSON.stringify(teams));
+  
     document.getElementById("allTeams").innerHTML = "";
     location.reload()
  }
+
+ ////////////////////////////////////////////////////////////////////////
+
+ function daysUntilDayOfWeek(dayOfWeek) {
+  const today = new Date().getDay();
+  const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  const dayIndex = days.indexOf(dayOfWeek);
+
+  if (dayIndex < 0) {
+    throw new Error("Invalid day of week: " + dayOfWeek);
+  }
+
+  if (dayIndex >= today) {
+    return dayIndex - today;
+  } else {
+    return 7 - (today - dayIndex);
+  }
+}
+
+const daysUntilWednesday = daysUntilDayOfWeek("Wednesday");
+console.log("There are " + daysUntilWednesday + " days until AEW Dynamite on TBS.");
+
+const daysUntilFriday = daysUntilDayOfWeek("Friday");
+console.log("There are " + daysUntilFriday + " days until AEW Rampage on TNT.");
+
+
+
+
+
 
 </script>
 </body>
