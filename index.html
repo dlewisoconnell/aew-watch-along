@@ -20,58 +20,59 @@
 <p></p>
     <button onClick="clearValue()">Clear Points</button>
 <p></p>
-<input type="text" id="nameOfTeam" required="" placeholder="Team name" />
-<div id="allTeams"></div>
-<button id="adder" type="button">Add Team</button>
-<button onClick="clearTeams()">Clear Teams</button>
 
+<input type="text" id="nameOfTeam" required="" placeholder="Team name" />
+
+<select id="select1">
+  <option value="team1name">Team 1</option>
+  <option value="team2name">Team 2</option>
+  <option value="team3name">Team 3</option>
+  <option value="team4name">Team 4</option>
+</select>
+<button onclick="getOption()">Name Team</button>
+<p></p><div id="allTeams"></div>    <button onClick="clearTeams()">Clear Teams</button>
+<p></p>
+<span class="output"></span>
+<p></p>
+  <div id="dynamite"></div><div id="rampage"></div><div id="ppv"></div>
 <script>
 //Variables//////////////////////////////////////////////////////////////
 var wrestlers =
-{
-  "1": {
-        "id": 1,
+[
+  {
         "name": "Kenny Omega",
         "points": localStorage.omegapoints
        },
-  "2": {
-        "id": 2,
+  {
         "name": "Jon Moxley",
         "points": localStorage.moxleypoints
        },
-   "3": {
-        "id": 3,
+   {
         "name": "Adam Paige",
         "points": localStorage.paigepoints
    }
 
-    };
-
-  
+  ];
 
 var teams =
-{
-  "1": {
-        "id": 1,
+[
+  {
         "name": localStorage.team1name,
         "roster": localStorage.team1roster
        },
-  "2": {
-        "id": 2,
+  {
         "name": localStorage.team2name,
         "roster": localStorage.team2roster
        },
-   "3": {
-        "id": 3,
+   {
         "name": localStorage.team3name,
         "roster": localStorage.team3roster
    },
-   "4": {
-        "id": 4,
+   {
         "name": localStorage.team4name,
         "roster": localStorage.team4roster
    }
-    };
+  ];
 
 //Defaults/////////////////////////////////////////////////////////////
 
@@ -85,18 +86,7 @@ if (typeof localStorage.paigepoints === "undefined") {
     localStorage.paigepoints = 0;
 } ;
 
-if (typeof localStorage.team1name === "undefined") {
-    localStorage.team1name = "Team 1";
-} ;
-if (typeof localStorage.team2 === "undefined") {
-    localStorage.team2name = "Team 2";
-} ;
-if (typeof localStorage.team3 === "undefined") {
-    localStorage.team3name = "Team 3";
-} ;
-if (typeof localStorage.team4 === "undefined") {
-    localStorage.team4name = "Team 4";
-} ;
+
 //Kenny Omega////////////////////////////////////////////////////////////////////
 document.getElementById("omegatotal").innerHTML = localStorage.omegapoints;
 
@@ -169,35 +159,29 @@ function clearValue() {
     localStorage.paigepoints = 0;
     document.getElementById("omegatotal").innerHTML = localStorage.omegapoints;
     document.getElementById("moxleytotal").innerHTML = localStorage.moxleypoints;
-    document.getElementById("paigetotal").innerHTML = localStorage.paigepoints;
+    document.getElementById("paigetotal").innerHTML = localStobangrage.paigepoints;
 };
 //Name Teams///////////////////////////////////////////////////////////////////
-var select = document.getElementById("selectTeam");
+document.getElementById("allTeams").innerHTML = localStorage.team1name + "<p>" + localStorage.team2name + "<p>" + localStorage.team3name + "<p>" + localStorage.team4name;
 
-const button = document.getElementById("adder");
-
-const name = document.getElementById("nameOfTeam");
-
-button.addEventListener("click", function() {
-  if (localStorage.team1) {
-    localStorage.team1 = "Team 1";
-  } else {
-    localStorage.team1 = name; 
-};
-document.getElementById("team1").innerHTML = localStorage.team1;
-	});
-
-document.getElementById('nameOfTeam').value='';
-
-function clearTeams() {
+function getOption() {
+        selectElement = document.querySelector('#select1');
+        output = selectElement.value;
+        let inputVal = document.getElementById("nameOfTeam").value;
+        localStorage.setItem(output, inputVal);
+        location.reload()
+      }
   
-    document.getElementById("allTeams").innerHTML = "";
-    location.reload()
- }
+  function clearTeams() {
+    localStorage.team1name = "";
+    localStorage.team2name = "";
+    localStorage.team3name = "";
+    localStorage.team4name = "";
+location.reload()
+}
+////////////////////////////////////////////////////////////////////////
 
- ////////////////////////////////////////////////////////////////////////
-
- function daysUntilDayOfWeek(dayOfWeek) {
+  function daysUntilDayOfWeek(dayOfWeek) {
   const today = new Date().getDay();
   const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
   const dayIndex = days.indexOf(dayOfWeek);
@@ -213,15 +197,21 @@ function clearTeams() {
   }
 }
 
+const targetDate = new Date('2023-5-28');
+
+const today = new Date();
+
+const timeDiff = targetDate.getTime() - today.getTime();
+
+const days = Math.ceil(timeDiff / (1000 * 3600 * 24));
+
 const daysUntilWednesday = daysUntilDayOfWeek("Wednesday");
-console.log("There are " + daysUntilWednesday + " days until AEW Dynamite on TBS.");
+document.getElementById("dynamite").innerHTML = "There are " + daysUntilWednesday + " days until AEW Dynamite on TBS."
 
 const daysUntilFriday = daysUntilDayOfWeek("Friday");
-console.log("There are " + daysUntilFriday + " days until AEW Rampage on TNT.");
+document.getElementById("rampage").innerHTML = "There are " + daysUntilFriday + " days until AEW Rampage on TNT."
 
-
-
-
+document.getElementById("ppv").innerHTML = "There are " + days + " days until AEW Double or Nothing on PPV."
 
 
 </script>
