@@ -7,20 +7,6 @@
     <title>Document</title>
 </head>
 <body>
-
-    Kenny Omega
-    <button onClick="omegaclickCounter()">Add Point</button>
-    <div id="omegatotal"></div>
-    Jon Moxley
-    <button onClick="moxleyclickCounter()">Add Point</button>
-    <div id="moxleytotal"></div>
-    Adam Paige
-    <button onClick="paigeclickCounter()">Add Point</button>
-    <div id="paigetotal"></div>
-<p></p>
-    <button onClick="clearValue()">Clear Points</button>
-<p></p>
-
 <input type="text" id="nameOfTeam" required="" placeholder="Team name" />
 
 <select id="select1">
@@ -29,8 +15,20 @@
   <option value="team3name">Team 3</option>
   <option value="team4name">Team 4</option>
 </select>
-<button onclick="getOption()">Name Team</button>
+<button onclick="getOption()">Add Team</button>
 <p></p><div id="allTeams"></div>    <button onClick="clearTeams()">Clear Teams</button>
+<p></p>
+
+Kenny Omega
+<button onClick="omegaclickCounter()">Add Point</button><div id="omegatotal"></div>
+Jon Moxley
+<button onClick="moxleyclickCounter()">Add Point</button>
+<div id="moxleytotal"></div>
+Adam Paige
+<button onClick="paigeclickCounter()">Add Point</button>
+<div id="paigetotal"></div>
+<p></p>
+<button onClick="clearValue()">Clear Points</button>
 <p></p>
 <span class="output"></span>
 <p></p>
@@ -41,7 +39,8 @@ var wrestlers =
 [
   {
         "name": "Kenny Omega",
-        "points": localStorage.omegapoints
+        "points": localStorage.omegapoints,
+      
        },
   {
         "name": "Jon Moxley",
@@ -55,24 +54,11 @@ var wrestlers =
   ];
 
 var teams =
-[
-  {
-        "name": localStorage.team1name,
-        "roster": localStorage.team1roster
-       },
-  {
-        "name": localStorage.team2name,
-        "roster": localStorage.team2roster
-       },
-   {
-        "name": localStorage.team3name,
-        "roster": localStorage.team3roster
-   },
-   {
-        "name": localStorage.team4name,
-        "roster": localStorage.team4roster
-   }
-  ];
+  {"name1": localStorage.team1name,
+  "name2": localStorage.team2name,
+   "name3": localStorage.team3name,
+   "name4": localStorage.team4name};
+
 
 //Defaults/////////////////////////////////////////////////////////////
 
@@ -86,7 +72,18 @@ if (typeof localStorage.paigepoints === "undefined") {
     localStorage.paigepoints = 0;
 } ;
 
-
+if (typeof localStorage.team1name === "undefined") {
+    localStorage.team1name = "";
+} ;
+if (typeof localStorage.team2name === "undefined") {
+    localStorage.team2name = "";
+} ;
+if (typeof localStorage.team3name === "undefined") {
+    localStorage.team3name = "";
+} ;
+if (typeof localStorage.team4name === "undefined") {
+    localStorage.team4name = "";
+} ;
 //Kenny Omega////////////////////////////////////////////////////////////////////
 document.getElementById("omegatotal").innerHTML = localStorage.omegapoints;
 
@@ -108,6 +105,10 @@ function clickCounterSub() {
 };
 document.getElementById("omegatotal").innerHTML = localStorage.omegapoints;
 };
+
+
+
+
 //Jon Moxley/////////////////////////////////////////////////////////////////
 document.getElementById("moxleytotal").innerHTML = localStorage.moxleypoints;
 
@@ -159,7 +160,7 @@ function clearValue() {
     localStorage.paigepoints = 0;
     document.getElementById("omegatotal").innerHTML = localStorage.omegapoints;
     document.getElementById("moxleytotal").innerHTML = localStorage.moxleypoints;
-    document.getElementById("paigetotal").innerHTML = localStobangrage.paigepoints;
+    document.getElementById("paigetotal").innerHTML = localStorage.paigepoints;
 };
 //Name Teams///////////////////////////////////////////////////////////////////
 document.getElementById("allTeams").innerHTML = localStorage.team1name + "<p>" + localStorage.team2name + "<p>" + localStorage.team3name + "<p>" + localStorage.team4name;
@@ -169,14 +170,14 @@ function getOption() {
         output = selectElement.value;
         let inputVal = document.getElementById("nameOfTeam").value;
         localStorage.setItem(output, inputVal);
-        location.reload()
+        location.reload();
       }
   
   function clearTeams() {
-    localStorage.team1name = "";
-    localStorage.team2name = "";
-    localStorage.team3name = "";
-    localStorage.team4name = "";
+    localStorage.team1name = " ";
+    localStorage.team2name = " ";
+    localStorage.team3name = " ";
+    localStorage.team4name = " ";
 location.reload()
 }
 ////////////////////////////////////////////////////////////////////////
