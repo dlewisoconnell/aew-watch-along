@@ -16,23 +16,33 @@
   <option value="team4name">Team 4</option>
 </select>
 <button onclick="getOption()">Add Team</button>
-<p></p><div id="allTeams"></div>    <button onClick="clearTeams()">Clear Teams</button>
-<p></p>
+<p></p>Teams:<div id="allTeams"></div>
 
 Kenny Omega
-<button onClick="omegaclickCounter()">Add Point</button><div id="omegatotal"></div>
+<button onClick="omegaclickCounter()">Add Point</button>
+<select id="omegateam">
+  <option style="display:none;" selected>Select Team</option>
+</select><div id="omegatotal"></div><p>
+
+</p>
 Jon Moxley
 <button onClick="moxleyclickCounter()">Add Point</button>
-<div id="moxleytotal"></div>
+</div><select id="moxleyteam">
+  <option style="display:none;" selected>Select Team</option>
+</select><div id="moxleytotal"></div><p></p>
 Adam Paige
 <button onClick="paigeclickCounter()">Add Point</button>
-<div id="paigetotal"></div>
+<select id="paigeteam">
+  <option style="display:none;" selected>Select Team</option>
+</select><div id="paigetotal"></div><p>
 <p></p>
-<button onClick="clearValue()">Clear Points</button>
-<p></p>
-<span class="output"></span>
+<button onClick="clearValue()">Clear All</button>
+
 <p></p>
   <div id="dynamite"></div><div id="rampage"></div><div id="ppv"></div>
+<p></p>
+<div id="my-table"></div>
+
 <script>
 //Variables//////////////////////////////////////////////////////////////
 var wrestlers =
@@ -40,25 +50,34 @@ var wrestlers =
   {
         "name": "Kenny Omega",
         "points": localStorage.omegapoints,
+        "team": localStorage.omegateam
       
        },
   {
         "name": "Jon Moxley",
-        "points": localStorage.moxleypoints
+        "points": localStorage.moxleypoints,
+        "team": localStorage.moxleyteam
        },
    {
         "name": "Adam Paige",
-        "points": localStorage.paigepoints
+        "points": localStorage.paigepoints,
+        "team": localStorage.paigeteam
    }
 
   ];
 
-var teams =
+var teams = [
   {"name1": localStorage.team1name,
   "name2": localStorage.team2name,
    "name3": localStorage.team3name,
-   "name4": localStorage.team4name};
+   "name4": localStorage.team4name}
+  ];
 
+const team1 = localStorage.getItem('team1name');
+const team2 = localStorage.getItem('team2name');
+const team3 = localStorage.getItem('team3name');
+const team4 = localStorage.getItem('team4name');
+var storedteams = [ team1, team2, team3, team4 ];
 
 //Defaults/////////////////////////////////////////////////////////////
 
@@ -106,8 +125,28 @@ function clickCounterSub() {
 document.getElementById("omegatotal").innerHTML = localStorage.omegapoints;
 };
 
+const omegadropdown = document.getElementById("omegateam");
 
+omegadropdown.addEventListener('change', function() {
+  const omegaselectedValue = omegadropdown.value;
+  localStorage.setItem("omegateam", omegaselectedValue);
+});
 
+document.addEventListener('DOMContentLoaded', function() {
+  const storedValue = localStorage.getItem("omegateam");
+  if (storedValue) {
+    const omegadropdown = document.getElementById("omegateam");
+    omegadropdown.value = storedValue;
+  }
+});
+
+for(var i = 0; i < storedteams.length; i++) {
+    var opt = storedteams[i];
+    var el = document.createElement("option");
+    el.textContent = opt;
+    el.value = opt;
+    omegadropdown.appendChild(el);
+};
 
 //Jon Moxley/////////////////////////////////////////////////////////////////
 document.getElementById("moxleytotal").innerHTML = localStorage.moxleypoints;
@@ -131,6 +170,30 @@ function clickCounterSub() {
 
 document.getElementById("moxleytotal").innerHTML = localStorage.moxleypoints;
 };
+
+const moxleydropdown = document.getElementById("moxleyteam");
+
+moxleydropdown.addEventListener('change', function() {
+  const selectedValue = moxleydropdown.value;
+  localStorage.setItem("moxleyteam", selectedValue);
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  const storedValue = localStorage.getItem("moxleyteam");
+  if (storedValue) {
+    const moxleydropdown = document.getElementById("moxleyteam");
+    moxleydropdown.value = storedValue;
+  }
+});
+
+for(var i = 0; i < storedteams.length; i++) {
+    var opt = storedteams[i];
+    var el = document.createElement("option");
+    el.textContent = opt;
+    el.value = opt;
+    moxleydropdown.appendChild(el);
+};
+
 //Adam Paige//////////////////////////////////////////////////////////////
 document.getElementById("paigetotal").innerHTML = localStorage.paigepoints;
 
@@ -153,17 +216,39 @@ function clickCounterSub() {
 
 document.getElementById("paigetotal").innerHTML = localStorage.paigepoints;
 };
+
+
+const paigedropdown = document.getElementById("paigeteam");
+
+moxleydropdown.addEventListener('change', function() {
+  const selectedValue = paigedropdown.value;
+  localStorage.setItem("paigeteam", selectedValue);
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  const storedValue = localStorage.getItem("paigeteam");
+  if (storedValue) {
+    const paigedropdown = document.getElementById("paigeteam");
+    paigedropdown.value = storedValue;
+  }
+});
+
+for(var i = 0; i < storedteams.length; i++) {
+    var opt = storedteams[i];
+    var el = document.createElement("option");
+    el.textContent = opt;
+    el.value = opt;
+    paigedropdown.appendChild(el);
+};
+
+
 //Clear Points///////////////////////////////////////////////////////////////////
 function clearValue() {
-    localStorage.omegapoints = 0;
-    localStorage.moxleypoints = 0;
-    localStorage.paigepoints = 0;
-    document.getElementById("omegatotal").innerHTML = localStorage.omegapoints;
-    document.getElementById("moxleytotal").innerHTML = localStorage.moxleypoints;
-    document.getElementById("paigetotal").innerHTML = localStorage.paigepoints;
-};
+  localStorage.clear();
+  location.reload();
+  };
 //Name Teams///////////////////////////////////////////////////////////////////
-document.getElementById("allTeams").innerHTML = localStorage.team1name + "<p>" + localStorage.team2name + "<p>" + localStorage.team3name + "<p>" + localStorage.team4name;
+document.getElementById("allTeams").innerHTML = localStorage.team1name + "<br>" + localStorage.team2name + "<br>" + localStorage.team3name + "<br>" + localStorage.team4name + "<p>";
 
 function getOption() {
         selectElement = document.querySelector('#select1');
@@ -172,14 +257,10 @@ function getOption() {
         localStorage.setItem(output, inputVal);
         location.reload();
       }
-  
-  function clearTeams() {
-    localStorage.team1name = " ";
-    localStorage.team2name = " ";
-    localStorage.team3name = " ";
-    localStorage.team4name = " ";
-location.reload()
-}
+////////////////////////////////////////////////////////////////////////
+
+
+
 ////////////////////////////////////////////////////////////////////////
 
   function daysUntilDayOfWeek(dayOfWeek) {
