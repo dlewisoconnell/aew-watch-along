@@ -41,8 +41,10 @@ Adam Paige
 <p></p>
   <div id="dynamite"></div><div id="rampage"></div><div id="ppv"></div>
 <p></p>
-<div id="my-table"></div>
+<div class="youtube-container"></div>
 
+
+<script src="https://apis.google.com/js/api.js"></script>
 <script>
 //Variables//////////////////////////////////////////////////////////////
 var wrestlers =
@@ -220,7 +222,7 @@ document.getElementById("paigetotal").innerHTML = localStorage.paigepoints;
 
 const paigedropdown = document.getElementById("paigeteam");
 
-moxleydropdown.addEventListener('change', function() {
+paigedropdown.addEventListener('change', function() {
   const selectedValue = paigedropdown.value;
   localStorage.setItem("paigeteam", selectedValue);
 });
@@ -240,7 +242,6 @@ for(var i = 0; i < storedteams.length; i++) {
     el.value = opt;
     paigedropdown.appendChild(el);
 };
-
 
 //Clear Points///////////////////////////////////////////////////////////////////
 function clearValue() {
@@ -288,14 +289,26 @@ const timeDiff = targetDate.getTime() - today.getTime();
 const days = Math.ceil(timeDiff / (1000 * 3600 * 24));
 
 const daysUntilWednesday = daysUntilDayOfWeek("Wednesday");
-document.getElementById("dynamite").innerHTML = "There are " + daysUntilWednesday + " days until AEW Dynamite on TBS."
 
 const daysUntilFriday = daysUntilDayOfWeek("Friday");
 document.getElementById("rampage").innerHTML = "There are " + daysUntilFriday + " days until AEW Rampage on TNT."
 
 document.getElementById("ppv").innerHTML = "There are " + days + " days until AEW Double or Nothing on PPV."
 
+///////////////////////////////////////////////////
 
+fetch("https://youtube.googleapis.com/youtube/v3/search?part=snippet&channelId=UCFN4JkGP_bVhAdBsoV9xftA&maxResults=5&key=AIzaSyDr12JkOMgMnB-KjbN2_n5HZ_NRRcjEEKg")
+.then((result)=>{
+ return result.json()
+}).then((data)=>{
+ let videos = data.items
+ let videoContainer = document.querySelector(".youtube-container")
+ for (video of videos){
+  console.log(video.snippet.thumbnails.high.url)
+  videoContainer.innerHTML += 
+  `<center><p><img src=${video.snippet.thumbnails.default.url}><br>
+  ${video.snippet.title}<p></center`
+}});
 </script>
 </body>
 </html>
