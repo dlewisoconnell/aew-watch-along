@@ -40,11 +40,18 @@ Adam Paige
 
 <p></p>
   <div id="dynamite"></div><div id="rampage"></div><div id="ppv"></div>
-<p></p>
+<p></p>AEW ON YOUTUBE<P></P>
 <div class="youtube-container"></div>
 
+<p></p>
 
-<script src="https://apis.google.com/js/api.js"></script>
+<input type="text" id="wrestlerInput" placeholder="Search for wrestlers...">
+<ul id="wrestlerList" display: none></ul>
+<div id="tableContainer"></div>
+
+
+
+<!-- <script src="https://apis.google.com/js/api.js"></script> -->
 <script>
 //Variables//////////////////////////////////////////////////////////////
 var wrestlers =
@@ -289,26 +296,101 @@ const timeDiff = targetDate.getTime() - today.getTime();
 const days = Math.ceil(timeDiff / (1000 * 3600 * 24));
 
 const daysUntilWednesday = daysUntilDayOfWeek("Wednesday");
+document.getElementById("dynamite").innerHTML = "There are " + daysUntilWednesday + " days until AEW Dynamite on TBS."
 
-const daysUntilFriday = daysUntilDayOfWeek("Friday");
-document.getElementById("rampage").innerHTML = "There are " + daysUntilFriday + " days until AEW Rampage on TNT."
+// const daysUntilFriday = daysUntilDayOfWeek("Friday");
+// document.getElementById("rampage").innerHTML = "There are " + daysUntilFriday + " days until AEW Rampage on TNT."
 
-document.getElementById("ppv").innerHTML = "There are " + days + " days until AEW Double or Nothing on PPV."
+// document.getElementById("ppv").innerHTML = "There are " + days + " days until AEW Double or Nothing on PPV."
 
-///////////////////////////////////////////////////
+//Youtube API/////////////////////////////////////////////////
 
-fetch("https://youtube.googleapis.com/youtube/v3/search?part=snippet&channelId=UCFN4JkGP_bVhAdBsoV9xftA&maxResults=5&key=AIzaSyDr12JkOMgMnB-KjbN2_n5HZ_NRRcjEEKg")
-.then((result)=>{
- return result.json()
-}).then((data)=>{
- let videos = data.items
- let videoContainer = document.querySelector(".youtube-container")
- for (video of videos){
-  console.log(video.snippet.thumbnails.high.url)
-  videoContainer.innerHTML += 
-  `<center><p><img src=${video.snippet.thumbnails.default.url}><br>
-  ${video.snippet.title}<p></center`
-}});
+// fetch("https://youtube.googleapis.com/youtube/v3/search?part=snippet&channelId=UCFN4JkGP_bVhAdBsoV9xftA&maxResults=5&key=AIzaSyDr12JkOMgMnB-KjbN2_n5HZ_NRRcjEEKg")
+// .then((result)=>{
+//  return result.json()
+// }).then((data)=>{
+//  let videos = data.items
+//  let videoContainer = document.querySelector(".youtube-container")
+//  for (video of videos){
+//   console.log(video.snippet.thumbnails.high.url)
+//   videoContainer.innerHTML += 
+//   `<center><p><img src=${video.snippet.thumbnails.default.url}><br>
+//   ${video.snippet.title}<p></center`
+// }});
+
+const wrestlerInput = document.getElementById('wrestlerInput');
+		const wrestlerList = document.getElementById('wrestlerList');
+		const tableContainer = document.getElementById('tableContainer');
+
+		// Display full table by default
+		const table = generateTable(wrestlers);
+		tableContainer.appendChild(table);
+
+		wrestlerInput.addEventListener('input', function() {
+			const inputValue = this.value.toLowerCase();
+			wrestlerList.innerHTML = '';
+			tableContainer.innerHTML = '';
+
+			const filteredWrestlers = wrestlers.filter(function(wrestler) {
+				return wrestler.name.toLowerCase().includes(inputValue);
+			});
+
+			filteredWrestlers.forEach(function(wrestler) {
+				const li = document.createElement('li');
+				li.textContent = wrestler.name;
+				wrestlerList.appendChild(li);
+			});
+
+			const table = generateTable(filteredWrestlers);
+			tableContainer.appendChild(table);
+		});
+
+		function generateTable(data) {
+			const table = document.createElement('table');
+			const thead = document.createElement('thead');
+			const tbody = document.createElement('tbody');
+
+			// Create header row
+			const headerRow = document.createElement('tr');
+			for (const property in data[0]) {
+				const th = document.createElement('th');
+				th.textContent = property;
+				headerRow.appendChild(th);
+			}
+			thead.appendChild(headerRow);
+
+			// Create data rows
+			data.forEach(function(item) {
+				const row = document.createElement('tr');
+				for (const property in item) {
+					const cell = document.createElement('td');
+					cell.textContent = item[property];
+					row.appendChild(cell);
+				}
+				tbody.appendChild(row);
+			});
+
+			table.appendChild(thead);
+			table.appendChild(tbody);
+
+			return table;
+		}
+
+    document.getElementById("wrestlerList").style.display = "none";
+    
+
+
+
+
+    
+    
+
 </script>
 </body>
 </html>
+
+
+
+
+
+
