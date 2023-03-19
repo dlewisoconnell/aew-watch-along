@@ -7,80 +7,68 @@
     <title>Document</title>
 </head>
 <body>
-<input type="text" id="nameOfTeam" required="" placeholder="Team name" />
+<h1>Dynamite Watch-Along</h1>
+  <h2>Roster</h2>
+	<ul id="wrestlerList"></ul>
+	<div id="tableContainer"></div><p></p>
+  <label for="wrestlerInput">Search: </label>
+	<input type="text" id="wrestlerInput"><p></p>
 
+
+<h2>Control Panel</h2>
+  Update Wrestlers<br>
+<select id="wrestlerDropdown">
+  <option style ="display:none;" selected>Select Wrestler</option>
+</select><span id="points"> Points</span>
+<button id="addButton">+</button>
+<button id="subButton">-</button>
+<select id="teamdropdown">
+  <option style="display:none;" selected>Select Team</option>
+</select>
+<button onClick="updateValue()">Submit</button>
+<p></p>
+<!-- <button onClick="clearValue()">Clear All</button> -->
+
+
+Update Teams<br> 
 <select id="select1">
+  <option style="display:none;" selected>Team #</option>
   <option value="team1name">Team 1</option>
   <option value="team2name">Team 2</option>
   <option value="team3name">Team 3</option>
   <option value="team4name">Team 4</option>
 </select>
-<button onclick="getOption()">Add Team</button>
+<input type="text" id="nameOfTeam" required="" placeholder="Team name" />
+<button onclick="getOption()">Submit</button>
 <p></p>Teams:<div id="allTeams"></div>
 
-Kenny Omega
-<button onClick="omegaclickCounter()">Add Point</button>
-<select id="omegateam">
-  <option style="display:none;" selected>Select Team</option>
-</select><div id="omegatotal"></div><p>
-
-</p>
-Jon Moxley
-<button onClick="moxleyclickCounter()">Add Point</button>
-</div><select id="moxleyteam">
-  <option style="display:none;" selected>Select Team</option>
-</select><div id="moxleytotal"></div><p></p>
-Adam Paige
-<button onClick="paigeclickCounter()">Add Point</button>
-<select id="paigeteam">
-  <option style="display:none;" selected>Select Team</option>
-</select><div id="paigetotal"></div><p>
-<p></p>
-<button onClick="clearValue()">Clear All</button>
-
-<p></p>
+<h2>Watch</h2>
   <div id="dynamite"></div><div id="rampage"></div><div id="ppv"></div>
-<p></p>AEW ON YOUTUBE<P></P>
-<div class="youtube-container"></div>
 
-<p></p>
-
-<input type="text" id="wrestlerInput" placeholder="Search for wrestlers...">
-<ul id="wrestlerList" display: none></ul>
-<div id="tableContainer"></div>
-
-
-
+  <!-- <p></p>AEW ON YOUTUBE<P></P>
+<div class="youtube-container"></div> -->
 <!-- <script src="https://apis.google.com/js/api.js"></script> -->
+
 <script>
 //Variables//////////////////////////////////////////////////////////////
 var wrestlers =
 [
+{
+    "Name": "Kenny Omega",
+    "Points": parseInt(localStorage.getItem("omegapoints")),
+    "Team": localStorage.getItem("omegateam")
+  },
   {
-        "name": "Kenny Omega",
-        "points": localStorage.omegapoints,
-        "team": localStorage.omegateam
-      
-       },
+    "Name": "Jon Moxley",
+    "Points": parseInt(localStorage.getItem("moxleypoints")),
+    "Team": localStorage.getItem("moxleyteam")
+  },
   {
-        "name": "Jon Moxley",
-        "points": localStorage.moxleypoints,
-        "team": localStorage.moxleyteam
-       },
-   {
-        "name": "Adam Paige",
-        "points": localStorage.paigepoints,
-        "team": localStorage.paigeteam
-   }
-
-  ];
-
-var teams = [
-  {"name1": localStorage.team1name,
-  "name2": localStorage.team2name,
-   "name3": localStorage.team3name,
-   "name4": localStorage.team4name}
-  ];
+    "Name": "Adam Paige",
+    "Points": parseInt(localStorage.getItem("paigepoints")),
+    "Team": localStorage.getItem("paigeteam")
+  }
+];
 
 const team1 = localStorage.getItem('team1name');
 const team2 = localStorage.getItem('team2name');
@@ -88,17 +76,14 @@ const team3 = localStorage.getItem('team3name');
 const team4 = localStorage.getItem('team4name');
 var storedteams = [ team1, team2, team3, team4 ];
 
-//Defaults/////////////////////////////////////////////////////////////
+for (var i = 0; i < wrestlers.length; i++) {
+  if (isNaN(wrestlers[i].Points)) {
+    wrestlers[i].Points = 0;
+  }
+}
 
-if (typeof localStorage.omegapoints === "undefined") {
-    localStorage.omegapoints = 0;
-} ;
-if (typeof localStorage.moxleypoints === "undefined") {
-    localStorage.moxleypoints = 0;
-} ;
-if (typeof localStorage.paigepoints === "undefined") {
-    localStorage.paigepoints = 0;
-} ;
+
+//Defaults/////////////////////////////////////////////////////////////
 
 if (typeof localStorage.team1name === "undefined") {
     localStorage.team1name = "";
@@ -112,149 +97,17 @@ if (typeof localStorage.team3name === "undefined") {
 if (typeof localStorage.team4name === "undefined") {
     localStorage.team4name = "";
 } ;
-//Kenny Omega////////////////////////////////////////////////////////////////////
-document.getElementById("omegatotal").innerHTML = localStorage.omegapoints;
-
-function omegaclickCounter() {
-  if (localStorage.omegapoints) {
-    localStorage.omegapoints = Number(localStorage.omegapoints)+1;
-  } else {
-    localStorage.omegapoints = 1; 
-};
-
-document.getElementById("omegatotal").innerHTML = localStorage.omegapoints;
-};
-
-function clickCounterSub() {
-  if (localStorage.points) {
-    localStorage.points = Number(localStorage.points)-1;
-  } else {
-    localStorage.points = 1; 
-};
-document.getElementById("omegatotal").innerHTML = localStorage.omegapoints;
-};
-
-const omegadropdown = document.getElementById("omegateam");
-
-omegadropdown.addEventListener('change', function() {
-  const omegaselectedValue = omegadropdown.value;
-  localStorage.setItem("omegateam", omegaselectedValue);
-});
-
-document.addEventListener('DOMContentLoaded', function() {
-  const storedValue = localStorage.getItem("omegateam");
-  if (storedValue) {
-    const omegadropdown = document.getElementById("omegateam");
-    omegadropdown.value = storedValue;
-  }
-});
-
-for(var i = 0; i < storedteams.length; i++) {
-    var opt = storedteams[i];
-    var el = document.createElement("option");
-    el.textContent = opt;
-    el.value = opt;
-    omegadropdown.appendChild(el);
-};
-
-//Jon Moxley/////////////////////////////////////////////////////////////////
-document.getElementById("moxleytotal").innerHTML = localStorage.moxleypoints;
-
-function moxleyclickCounter() {
-  if (localStorage.moxleypoints) {
-    localStorage.moxleypoints = Number(localStorage.moxleypoints)+1;
-  } else {
-    localStorage.moxleypoints = 1; 
-};
-
-document.getElementById("moxleytotal").innerHTML = localStorage.moxleypoints;
-};
-
-function clickCounterSub() {
-  if (localStorage.moxleypoints) {
-    localStorage.moxleypoints = Number(localStorage.points)-1;
-  } else {
-    localStorage.moxleypoints = 1; 
-};
-
-document.getElementById("moxleytotal").innerHTML = localStorage.moxleypoints;
-};
-
-const moxleydropdown = document.getElementById("moxleyteam");
-
-moxleydropdown.addEventListener('change', function() {
-  const selectedValue = moxleydropdown.value;
-  localStorage.setItem("moxleyteam", selectedValue);
-});
-
-document.addEventListener('DOMContentLoaded', function() {
-  const storedValue = localStorage.getItem("moxleyteam");
-  if (storedValue) {
-    const moxleydropdown = document.getElementById("moxleyteam");
-    moxleydropdown.value = storedValue;
-  }
-});
-
-for(var i = 0; i < storedteams.length; i++) {
-    var opt = storedteams[i];
-    var el = document.createElement("option");
-    el.textContent = opt;
-    el.value = opt;
-    moxleydropdown.appendChild(el);
-};
-
-//Adam Paige//////////////////////////////////////////////////////////////
-document.getElementById("paigetotal").innerHTML = localStorage.paigepoints;
-
-function paigeclickCounter() {
-  if (localStorage.paigepoints) {
-    localStorage.paigepoints = Number(localStorage.paigepoints)+1;
-  } else {
-    localStorage.paigepoints = 1; 
-};
-
-document.getElementById("paigetotal").innerHTML = localStorage.paigepoints;
-};
-
-function clickCounterSub() {
-  if (localStorage.paigepoints) {
-    localStorage.paigepoints = Number(localStorage.points)-1;
-  } else {
-    localStorage.paigepoints = 1; 
-};
-
-document.getElementById("paigetotal").innerHTML = localStorage.paigepoints;
-};
-
-
-const paigedropdown = document.getElementById("paigeteam");
-
-paigedropdown.addEventListener('change', function() {
-  const selectedValue = paigedropdown.value;
-  localStorage.setItem("paigeteam", selectedValue);
-});
-
-document.addEventListener('DOMContentLoaded', function() {
-  const storedValue = localStorage.getItem("paigeteam");
-  if (storedValue) {
-    const paigedropdown = document.getElementById("paigeteam");
-    paigedropdown.value = storedValue;
-  }
-});
-
-for(var i = 0; i < storedteams.length; i++) {
-    var opt = storedteams[i];
-    var el = document.createElement("option");
-    el.textContent = opt;
-    el.value = opt;
-    paigedropdown.appendChild(el);
-};
+//////////////////////////////////////////////////////////////////////
 
 //Clear Points///////////////////////////////////////////////////////////////////
 function clearValue() {
   localStorage.clear();
-  location.reload();
-  };
+  location.reload(); 
+};
+
+  function updateValue() {
+    location.reload();    
+  }
 //Name Teams///////////////////////////////////////////////////////////////////
 document.getElementById("allTeams").innerHTML = localStorage.team1name + "<br>" + localStorage.team2name + "<br>" + localStorage.team3name + "<br>" + localStorage.team4name + "<p>";
 
@@ -265,10 +118,6 @@ function getOption() {
         localStorage.setItem(output, inputVal);
         location.reload();
       }
-////////////////////////////////////////////////////////////////////////
-
-
-
 ////////////////////////////////////////////////////////////////////////
 
   function daysUntilDayOfWeek(dayOfWeek) {
@@ -298,10 +147,6 @@ const days = Math.ceil(timeDiff / (1000 * 3600 * 24));
 const daysUntilWednesday = daysUntilDayOfWeek("Wednesday");
 document.getElementById("dynamite").innerHTML = "There are " + daysUntilWednesday + " days until AEW Dynamite on TBS."
 
-// const daysUntilFriday = daysUntilDayOfWeek("Friday");
-// document.getElementById("rampage").innerHTML = "There are " + daysUntilFriday + " days until AEW Rampage on TNT."
-
-// document.getElementById("ppv").innerHTML = "There are " + days + " days until AEW Double or Nothing on PPV."
 
 //Youtube API/////////////////////////////////////////////////
 
@@ -316,74 +161,182 @@ document.getElementById("dynamite").innerHTML = "There are " + daysUntilWednesda
 //   videoContainer.innerHTML += 
 //   `<center><p><img src=${video.snippet.thumbnails.default.url}><br>
 //   ${video.snippet.title}<p></center`
-// }});
+// }});n 
+///////////////////////////////////////////////////////////////////
+const dropdown = document.getElementById("wrestlerDropdown");
+const button = document.getElementById("addButton");
+const subbutton = document.getElementById("subButton");
 
+wrestlers.forEach(wrestler => {
+  const option = document.createElement("option");
+  option.text = wrestler.Name;
+  dropdown.add(option);
+});
+
+const pointsSpan = document.getElementById("points");
+
+button.addEventListener("click", () => {
+  const selectedWrestler = wrestlers.find(wrestler => wrestler.Name === dropdown.value);
+  selectedWrestler.Points++;
+  // Update the localStorage value for the selected wrestler's points
+  const lastName = selectedWrestler.Name.split(" ")[1].toLowerCase();
+  localStorage.setItem(`${lastName}points`, selectedWrestler.Points);
+  pointsSpan.textContent = `${selectedWrestler.Points}`;
+});
+
+subbutton.addEventListener("click", () => {
+  const selectedWrestler = wrestlers.find(wrestler => wrestler.Name === dropdown.value);
+  selectedWrestler.Points--;
+  // Update the localStorage value for the selected wrestler's points
+  const lastName = selectedWrestler.Name.split(" ")[1].toLowerCase();
+  localStorage.setItem(`${lastName}points`, selectedWrestler.Points);
+  pointsSpan.textContent = `${selectedWrestler.Points}`;
+});
+
+const wrestlerDropdown = document.getElementById("wrestlerDropdown");
+const teamdropdown = document.getElementById("teamdropdown");
+
+// add event listener to teamdropdown
+teamdropdown.addEventListener("change", function() {
+  const wrestlerName = wrestlerDropdown.value;
+  const wrestler = wrestlers.find(w => w.Name === wrestlerName);
+  if (wrestler) {
+    wrestler.Team = teamdropdown.value;
+    const selectedWrestler = wrestlers.find(wrestler => wrestler.Name === dropdown.value);
+    const lastName = selectedWrestler.Name.split(" ")[1].toLowerCase();
+  localStorage.setItem(`${lastName}team`, selectedWrestler.Team);}
+});
+
+for(var i = 0; i < storedteams.length; i++) {
+    var opt = storedteams[i];
+    var el = document.createElement("option");
+    el.textContent = opt;
+    el.value = opt;
+    teamdropdown.appendChild(el);
+};
+
+wrestlerDropdown.addEventListener("change", function() {
+  // Get the selected wrestler from the dropdown
+  const selectedWrestler = wrestlers.find(wrestler => wrestler.Name === wrestlerDropdown.value);
+  
+  // Update the points span with the selected wrestler's points
+  pointsSpan.innerText = selectedWrestler ? selectedWrestler.Points : "";
+});
+///////////////////////////////////////////////////////////////////
 const wrestlerInput = document.getElementById('wrestlerInput');
-		const wrestlerList = document.getElementById('wrestlerList');
-		const tableContainer = document.getElementById('tableContainer');
+const wrestlerList = document.getElementById('wrestlerList');
+const tableContainer = document.getElementById('tableContainer');
 
-		// Display full table by default
-		const table = generateTable(wrestlers);
-		tableContainer.appendChild(table);
+// Display full table by default
+const table = generateTable(wrestlers);
+tableContainer.appendChild(table);
 
-		wrestlerInput.addEventListener('input', function() {
-			const inputValue = this.value.toLowerCase();
-			wrestlerList.innerHTML = '';
-			tableContainer.innerHTML = '';
+// Autocomplete search function
+wrestlerInput.addEventListener('input', function() {
+    const inputValue = this.value.toLowerCase();
+    wrestlerList.innerHTML = '';
 
-			const filteredWrestlers = wrestlers.filter(function(wrestler) {
-				return wrestler.name.toLowerCase().includes(inputValue);
-			});
+    const filteredWrestlers = wrestlers.filter(function(wrestler) {
+        return wrestler.Name.toLowerCase().includes(inputValue);
+    });
 
-			filteredWrestlers.forEach(function(wrestler) {
-				const li = document.createElement('li');
-				li.textContent = wrestler.name;
-				wrestlerList.appendChild(li);
-			});
+    filteredWrestlers.forEach(function(wrestler) {
+        const li = document.createElement('li');
+        li.textContent = wrestler.Name;
+        wrestlerList.appendChild(li);
+    });
 
-			const table = generateTable(filteredWrestlers);
-			tableContainer.appendChild(table);
-		});
+    // Generate table with filtered data
+    const table = generateTable(filteredWrestlers);
+    tableContainer.innerHTML = '';
+    tableContainer.appendChild(table);
+});
 
-		function generateTable(data) {
-			const table = document.createElement('table');
-			const thead = document.createElement('thead');
-			const tbody = document.createElement('tbody');
+function generateTable(data) {
+    const table = document.createElement('table');
+    const thead = document.createElement('thead');
+    const tbody = document.createElement('tbody');
 
-			// Create header row
-			const headerRow = document.createElement('tr');
-			for (const property in data[0]) {
-				const th = document.createElement('th');
-				th.textContent = property;
-				headerRow.appendChild(th);
-			}
-			thead.appendChild(headerRow);
+    // Create header row
+const headerRow = document.createElement('tr');
+for (const property in data[0]) {
+    const th = document.createElement('th');
+    th.textContent = property;
+    th.setAttribute('data-sort-direction', 'asc'); // add this line
+    th.addEventListener('click', function() {
+        const column = this.textContent;
+        const sortDirection = this.getAttribute('data-sort-direction'); // add this line
+        const sortedData = data.sort(function(a, b) {
+            if (sortDirection === 'asc') {
+                return a[column] > b[column] ? 1 : -1;
+            } else {
+                return a[column] < b[column] ? 1 : -1;
+            }
+        });
+        this.setAttribute('data-sort-direction', sortDirection === 'asc' ? 'desc' : 'asc'); // add this line
+        const table = generateTable(sortedData);
+        tableContainer.innerHTML = '';
+        tableContainer.appendChild(table);
+    });
+    headerRow.appendChild(th);
+}
+thead.appendChild(headerRow);
 
-			// Create data rows
-			data.forEach(function(item) {
-				const row = document.createElement('tr');
-				for (const property in item) {
-					const cell = document.createElement('td');
-					cell.textContent = item[property];
-					row.appendChild(cell);
-				}
-				tbody.appendChild(row);
-			});
+    // Create data rows
+    data.forEach(function(item) {
+        const row = document.createElement('tr');
+        for (const property in item) {
+            const cell = document.createElement('td');
+            cell.textContent = item[property];
+            row.appendChild(cell);
+        }
+        tbody.appendChild(row);
+    });
 
-			table.appendChild(thead);
-			table.appendChild(tbody);
+    table.appendChild(thead);
+    table.appendChild(tbody);
 
-			return table;
-		}
-
-    document.getElementById("wrestlerList").style.display = "none";
-    
+    return table;
+}
 
 
+function sortTableByColumn(columnName, data, tbody) {
+    // Determine the data type of the column
+    let dataType = 'string';
+    if (columnName === 'Points') {
+        dataType = 'number';
+    }
+
+    // Sort the data by the clicked column
+    data.sort(function(a, b) {
+        if (dataType === 'string') {
+            return a[columnName].localeCompare(b[columnName]);
+        } else {
+            return a[columnName] - b[columnName];
+        }
+    });
+
+    // Remove existing rows from the table
+    while (tbody.firstChild) {
+        tbody.removeChild(tbody.firstChild);
+    }
+
+    // Add sorted rows to the table
+    data.forEach(function(item) {
+        const row = document.createElement('tr');
+        for (const property in item) {
+            const cell = document.createElement('td');
+            cell.textContent = item[property];
+            row.appendChild(cell);
+        }
+        tbody.appendChild(row);
+    });
+}
 
 
-    
-    
+document.getElementById("wrestlerList").style.display = "none";
+
+
 
 </script>
 </body>
