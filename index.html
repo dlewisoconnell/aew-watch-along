@@ -6,31 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
+<body><center>
 <h1>Dynamite Watch-Along</h1>
   <h2>Roster</h2>
+  <label for="wrestlerInput">Search: </label>
+	<input type="text" id="wrestlerInput"><p>
 	<ul id="wrestlerList"></ul>
 	<div id="tableContainer"></div><p></p>
-  <label for="wrestlerInput">Search: </label>
-	<input type="text" id="wrestlerInput"><p></p>
 
+  <h2>Scoreboard</h2>
+  <div id="results"></div>
 
 <h2>Control Panel</h2>
-  Update Wrestlers<br>
-<select id="wrestlerDropdown">
-  <option style ="display:none;" selected>Select Wrestler</option>
-</select><span id="points"> Points</span>
-<button id="addButton">+</button>
-<button id="subButton">-</button>
-<select id="teamdropdown">
-  <option style="display:none;" selected>Select Team</option>
-</select>
-<button onClick="updateValue()">Submit</button>
-<p></p>
-<!-- <button onClick="clearValue()">Clear All</button> -->
 
-
-Update Teams<br> 
+<h3>Update Teams</h3>
 <select id="select1">
   <option style="display:none;" selected>Team #</option>
   <option value="team1name">Team 1</option>
@@ -40,34 +29,258 @@ Update Teams<br>
 </select>
 <input type="text" id="nameOfTeam" required="" placeholder="Team name" />
 <button onclick="getOption()">Submit</button>
-<p></p>Teams:<div id="allTeams"></div>
+
+<p></p><div id="allTeams">
+</div>
+
+<h3>Update Wrestlers</h3>
+<select id="wrestlerDropdown">
+  <option style ="display:none;" selected>Select Wrestler</option>
+</select><span id="points"> Points</span>
+<button id="addButton">+</button>
+<button id="subButton">-</button><br>
+<select id="teamdropdown">
+  <option style="display:none;" selected>Select Team</option>
+</select>
+<button onClick="updateValue()">Submit</button>
+<p></p>
+
+<h3>Clear Saved</h3>
+<button onClick="clearValue()">Clear All</button>
 
 <h2>Watch</h2>
   <div id="dynamite"></div><div id="rampage"></div><div id="ppv"></div>
 
   <!-- <p></p>AEW ON YOUTUBE<P></P>
 <div class="youtube-container"></div> -->
-<!-- <script src="https://apis.google.com/js/api.js"></script> -->
 
+
+<!-- <script src="https://apis.google.com/js/api.js"></script> -->
 <script>
 //Variables//////////////////////////////////////////////////////////////
 var wrestlers =
 [
-{
-    "Name": "Kenny Omega",
-    "Points": parseInt(localStorage.getItem("omegapoints")),
-    "Team": localStorage.getItem("omegateam")
-  },
   {
-    "Name": "Jon Moxley",
-    "Points": parseInt(localStorage.getItem("moxleypoints")),
-    "Team": localStorage.getItem("moxleyteam")
-  },
-  {
+    "Name": "Adam Cole",
+    "Points": parseInt(localStorage.getItem("adacolpoints")),
+    "Team": localStorage.getItem("adacolteam")
+  },{
     "Name": "Adam Paige",
-    "Points": parseInt(localStorage.getItem("paigepoints")),
-    "Team": localStorage.getItem("paigeteam")
-  }
+    "Points": parseInt(localStorage.getItem("adapaipoints")),
+    "Team": localStorage.getItem("adapaiteam")
+  },{
+    "Name": "Alex Reynolds",
+    "Points": parseInt(localStorage.getItem("alexreypoints")),
+    "Team": localStorage.getItem("alereyteam")
+  },{
+    "Name": "Anthony Bowens",
+    "Points": parseInt(localStorage.getItem("antbowpoints")),
+    "Team": localStorage.getItem("antbowteam")
+  },{
+    "Name": "Austin Gunn",
+    "Points": parseInt(localStorage.getItem("ausgunpoints")),
+    "Team": localStorage.getItem("ausgunteam")
+  },{
+    "Name": "Brodie King",
+    "Points": parseInt(localStorage.getItem("brokinpoints")),
+    "Team": localStorage.getItem("brokinteam")
+  },{
+    "Name": "Britt Baker",
+    "Points": parseInt(localStorage.getItem("bribakpoints")),
+    "Team": localStorage.getItem("bribakteam")
+  },{
+    "Name": "Bryan Danielson",
+    "Points": parseInt(localStorage.getItem("brydanpoints")),
+    "Team": localStorage.getItem("brydanteam")
+  },{
+    "Name": "Buddy Matthews",
+    "Points": parseInt(localStorage.getItem("budmatpoints")),
+    "Team": localStorage.getItem("budmatteam")
+  },{
+    "Name": "Cash Wheeler",
+    "Points": parseInt(localStorage.getItem("caswhepoints")),
+    "Team": localStorage.getItem("caswheteam")
+  },{
+    "Name": "Chuck Taylor",
+    "Points": parseInt(localStorage.getItem("chutaypoints")),
+    "Team": localStorage.getItem("chutayteam")
+  },{
+    "Name": "Colten Gunn",
+    "Points": parseInt(localStorage.getItem("colgunpoints")),
+    "Team": localStorage.getItem("colgunteam")
+  },{
+    "Name": "Dax Harwood",
+    "Points": parseInt(localStorage.getItem("daxharpoints")),
+    "Team": localStorage.getItem("daxharteam")
+  },{
+    "Name": "Danhausen",
+    "Points": parseInt(localStorage.getItem("danpoints")),
+    "Team": localStorage.getItem("danteam")
+  },{
+    "Name": "Daniel Garcia",
+    "Points": parseInt(localStorage.getItem("dangarpoints")),
+    "Team": localStorage.getItem("dangarteam")
+  },{
+    "Name": "Darius Martin",
+    "Points": parseInt(localStorage.getItem("darmarpoints")),
+    "Team": localStorage.getItem("darmarteam")
+  },{
+    "Name": "Darby Allin",
+    "Points": parseInt(localStorage.getItem("darallpoints")),
+    "Team": localStorage.getItem("darallteam")
+  },{
+    "Name": "Evil Uno",
+    "Points": parseInt(localStorage.getItem("eviunopoints")),
+    "Team": localStorage.getItem("eviunolteam")
+  },{
+    "Name": "Ethan Page",
+    "Points": parseInt(localStorage.getItem("ethpagpoints")),
+    "Team": localStorage.getItem("ethpaglteam")
+  },{
+    "Name": "Hikaru Shida",
+    "Points": parseInt(localStorage.getItem("hikshipoints")),
+    "Team": localStorage.getItem("hikshilteam")
+  },{
+    "Name": "Hook",
+    "Points": parseInt(localStorage.getItem("hoopoints")),
+    "Team": localStorage.getItem("hooteam")
+  },{
+    "Name": "Jamie Hayter",
+    "Points": parseInt(localStorage.getItem("jamhaypoints")),
+    "Team": localStorage.getItem("jamhayteam")
+  },{
+    "Name": "Jay Lethal",
+    "Points": parseInt(localStorage.getItem("jayletpoints")),
+    "Team": localStorage.getItem("jayletteam")
+  },{
+    "Name": "Jade Cargill",
+    "Points": parseInt(localStorage.getItem("jadcarpoints")),
+    "Team": localStorage.getItem("jadcarteam")
+  },{
+    "Name": "Jeff Jarrett",
+    "Points": parseInt(localStorage.getItem("jefjarpoints")),
+    "Team": localStorage.getItem("jefjarteam")
+  },{
+    "Name": "John Silver",
+    "Points": parseInt(localStorage.getItem("johsilpoints")),
+    "Team": localStorage.getItem("johsilteam")
+  },{
+    "Name": "Jon Moxley",
+    "Points": parseInt(localStorage.getItem("jonmoxpoints")),
+    "Team": localStorage.getItem("jonmoxteam")
+  },{
+    "Name": "Juice Robinson",
+    "Points": parseInt(localStorage.getItem("juirobpoints")),
+    "Team": localStorage.getItem("juirobteam")
+  },{
+    "Name": "Jungle Boy",
+    "Points": parseInt(localStorage.getItem("junboypoints")),
+    "Team": localStorage.getItem("junboyteam")
+  },{
+    "Name": "Kenny Omega",
+    "Points": parseInt(localStorage.getItem("kenomepoints")),
+    "Team": localStorage.getItem("kenometeam")
+  },{
+    "Name": "Malakai Black",
+    "Points": parseInt(localStorage.getItem("malblapoints")),
+    "Team": localStorage.getItem("malbalteam")
+  },{
+    "Name": "Matt Jackson",
+    "Points": parseInt(localStorage.getItem("matjacpoints")),
+    "Team": localStorage.getItem("matjacteam")
+  },{
+    "Name": "Max Caster",
+    "Points": parseInt(localStorage.getItem("maxcaspoints")),
+    "Team": localStorage.getItem("maxcasteam")
+  },{
+    "Name": "MJF",
+    "Points": parseInt(localStorage.getItem("mjfpoints")),
+    "Team": localStorage.getItem("mjfteam")
+  },{
+    "Name": "Nayla Rose",
+    "Points": parseInt(localStorage.getItem("nayrospoints")),
+    "Team": localStorage.getItem("nayrosteam")
+  },{
+    "Name": "Nick Jackson",
+    "Points": parseInt(localStorage.getItem("nicjacpoints")),
+    "Team": localStorage.getItem("nicjacteam")
+  },{
+    "Name": "Orange Cassidy",
+    "Points": parseInt(localStorage.getItem("oracaspoints")),
+    "Team": localStorage.getItem("oracasteam")
+  },{
+    "Name": "Penta El Zero M",
+    "Points": parseInt(localStorage.getItem("penelpoints")),
+    "Team": localStorage.getItem("penelteam")
+  },{
+    "Name": "Penelope Ford",
+    "Points": parseInt(localStorage.getItem("penforpoints")),
+    "Team": localStorage.getItem("penforteam")
+  },{
+    "Name": "Powerhouse Hobbes",
+    "Points": parseInt(localStorage.getItem("powhobpoints")),
+    "Team": localStorage.getItem("powhobteam")
+  },{
+    "Name": "Rey Fénix",
+    "Points": parseInt(localStorage.getItem("reyfénpoints")),
+    "Team": localStorage.getItem("reyfénteam")
+  },{
+    "Name": "Ricky Starks",
+    "Points": parseInt(localStorage.getItem("ricstafénpoints")),
+    "Team": localStorage.getItem("ricstateam")
+  },{
+    "Name": "Riho",
+    "Points": parseInt(localStorage.getItem("rihpoints")),
+    "Team": localStorage.getItem("rihteam")
+  },{
+    "Name": "Ruby Soho",
+    "Points": parseInt(localStorage.getItem("rubsohpoints")),
+    "Team": localStorage.getItem("rubsohteam")
+  },{
+    "Name": "Rush",
+    "Points": parseInt(localStorage.getItem("ruspoints")),
+    "Team": localStorage.getItem("rusteam")
+  },{
+    "Name": "Sammy Guevara",
+    "Points": parseInt(localStorage.getItem("samguepoints")),
+    "Team": localStorage.getItem("samgueteam")
+  },{
+    "Name": "Saraya",
+    "Points": parseInt(localStorage.getItem("sarpoints")),
+    "Team": localStorage.getItem("sarteam")
+  },{
+    "Name": "Sting",
+    "Points": parseInt(localStorage.getItem("stipoints")),
+    "Team": localStorage.getItem("stiteam")
+  },{
+    "Name": "Stu Grayson",
+    "Points": parseInt(localStorage.getItem("stugrepoints")),
+    "Team": localStorage.getItem("stugreteam")
+  },{
+    "Name": "Tay Melo",
+    "Points": parseInt(localStorage.getItem("taymelpoints")),
+    "Team": localStorage.getItem("taymelteam")
+  },{
+    "Name": "Taya Valkrie",
+    "Points": parseInt(localStorage.getItem("tayvalpoints")),
+    "Team": localStorage.getItem("rayvalteam")
+  },{
+    "Name": "Toni Storm",
+    "Points": parseInt(localStorage.getItem("tonstopoints")),
+    "Team": localStorage.getItem("tonstoteam")
+  },{
+    "Name": "Trent Beretta",
+    "Points": parseInt(localStorage.getItem("treberpoints")),
+    "Team": localStorage.getItem("treberteam")
+  },{
+    "Name": "Wheeler Yuta",
+    "Points": parseInt(localStorage.getItem("wheyutpoints")),
+    "Team": localStorage.getItem("wheyutteam")
+  },{
+    "Name": "Willow Nightingale",
+    "Points": parseInt(localStorage.getItem("wilnigpoints")),
+    "Team": localStorage.getItem("wilnigteam")
+  },
 ];
 
 const team1 = localStorage.getItem('team1name');
@@ -75,6 +288,7 @@ const team2 = localStorage.getItem('team2name');
 const team3 = localStorage.getItem('team3name');
 const team4 = localStorage.getItem('team4name');
 var storedteams = [ team1, team2, team3, team4 ];
+const teamNames = [localStorage.team1name, localStorage.team2name, localStorage.team3name, localStorage.team4name];
 
 for (var i = 0; i < wrestlers.length; i++) {
   if (isNaN(wrestlers[i].Points)) {
@@ -82,8 +296,11 @@ for (var i = 0; i < wrestlers.length; i++) {
   }
 }
 
-
-//Defaults/////////////////////////////////////////////////////////////
+for (var i = 0; i < wrestlers.length; i++) {
+  if (!wrestlers[i].Team) {
+    wrestlers[i].Team = "Free Agent";
+  }
+}
 
 if (typeof localStorage.team1name === "undefined") {
     localStorage.team1name = "";
@@ -97,30 +314,73 @@ if (typeof localStorage.team3name === "undefined") {
 if (typeof localStorage.team4name === "undefined") {
     localStorage.team4name = "";
 } ;
-//////////////////////////////////////////////////////////////////////
 
 //Clear Points///////////////////////////////////////////////////////////////////
 function clearValue() {
-  localStorage.clear();
-  location.reload(); 
-};
-
-  function updateValue() {
-    location.reload();    
+  if (confirm("Are you sure you want to clear all saved data?")) {
+    localStorage.clear();
+    location.reload();
   }
+}
+
+function updateValue() {
+  location.reload();    
+}
+
 //Name Teams///////////////////////////////////////////////////////////////////
-document.getElementById("allTeams").innerHTML = localStorage.team1name + "<br>" + localStorage.team2name + "<br>" + localStorage.team3name + "<br>" + localStorage.team4name + "<p>";
+const teamsContainer = document.getElementById("allTeams");
+
+function displayTeams() {
+  teamsContainer.innerHTML = "Teams:";
+
+  for (let i = 1; i <= 4; i++) {
+    const teamName = localStorage.getItem(`team${i}name`);
+
+    if (teamName) {
+      const teamElement = document.createElement("p");
+      teamElement.textContent = teamName;
+      teamsContainer.appendChild(teamElement);
+    }
+  }
+}
 
 function getOption() {
-        selectElement = document.querySelector('#select1');
-        output = selectElement.value;
-        let inputVal = document.getElementById("nameOfTeam").value;
-        localStorage.setItem(output, inputVal);
-        location.reload();
+  const selectElement = document.querySelector('#select1');
+  const output = selectElement.value;
+  const inputVal = document.getElementById("nameOfTeam").value;
+
+  localStorage.setItem(output, inputVal);
+
+  for (const key in localStorage) {
+    if (key.endsWith("team")) {
+      const teamName = localStorage[key];
+
+      let matchFound = false;
+      for (const otherKey in localStorage) {
+        if (otherKey.startsWith("team")) {
+          if (localStorage[otherKey] === teamName) {
+            matchFound = true;
+            break;
+          }
+        }
       }
+
+      if (!matchFound && teamName !== inputVal) {
+        localStorage.setItem(key, inputVal);
+      }
+    }
+  }
+
+  displayTeams();
+  teamsContainer.style.display = "block";
+}
+
+
+
+
 ////////////////////////////////////////////////////////////////////////
 
-  function daysUntilDayOfWeek(dayOfWeek) {
+function daysUntilDayOfWeek(dayOfWeek) {
   const today = new Date().getDay();
   const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
   const dayIndex = days.indexOf(dayOfWeek);
@@ -136,17 +396,17 @@ function getOption() {
   }
 }
 
-const targetDate = new Date('2023-5-28');
-
 const today = new Date();
+const dayOfWeek = today.getDay();
 
-const timeDiff = targetDate.getTime() - today.getTime();
-
-const days = Math.ceil(timeDiff / (1000 * 3600 * 24));
-
-const daysUntilWednesday = daysUntilDayOfWeek("Wednesday");
-document.getElementById("dynamite").innerHTML = "There are " + daysUntilWednesday + " days until AEW Dynamite on TBS."
-
+if (dayOfWeek === 2) { // Tuesday
+  document.getElementById("dynamite").innerHTML = "AEW Dynamite on TBS in tomorrow!";
+} else if (dayOfWeek === 3) { // Wednesday
+  document.getElementById("dynamite").innerHTML = "It's Wednesday, you know what that means - AEW Dynamite on TBS!";
+} else {
+  const daysUntilWednesday = daysUntilDayOfWeek("Wednesday");
+  document.getElementById("dynamite").innerHTML = "There are " + daysUntilWednesday + " days until AEW Dynamite on TBS.";
+}
 
 //Youtube API/////////////////////////////////////////////////
 
@@ -179,8 +439,10 @@ button.addEventListener("click", () => {
   const selectedWrestler = wrestlers.find(wrestler => wrestler.Name === dropdown.value);
   selectedWrestler.Points++;
   // Update the localStorage value for the selected wrestler's points
-  const lastName = selectedWrestler.Name.split(" ")[1].toLowerCase();
-  localStorage.setItem(`${lastName}points`, selectedWrestler.Points);
+  const nameParts = selectedWrestler.Name.split(" ");
+  let firstName = nameParts[0].substring(0, 3).toLowerCase();
+  let lastName = nameParts.length > 1 ? nameParts[1].substring(0, 3).toLowerCase() : '';
+  localStorage.setItem(`${firstName}${lastName}points`, selectedWrestler.Points);
   pointsSpan.textContent = `${selectedWrestler.Points}`;
 });
 
@@ -188,8 +450,10 @@ subbutton.addEventListener("click", () => {
   const selectedWrestler = wrestlers.find(wrestler => wrestler.Name === dropdown.value);
   selectedWrestler.Points--;
   // Update the localStorage value for the selected wrestler's points
-  const lastName = selectedWrestler.Name.split(" ")[1].toLowerCase();
-  localStorage.setItem(`${lastName}points`, selectedWrestler.Points);
+  const nameParts = selectedWrestler.Name.split(" ");
+  let firstName = nameParts[0].substring(0, 3).toLowerCase();
+  let lastName = nameParts.length > 1 ? nameParts[1].substring(0, 3).toLowerCase() : '';
+  localStorage.setItem(`${firstName}${lastName}points`, selectedWrestler.Points);
   pointsSpan.textContent = `${selectedWrestler.Points}`;
 });
 
@@ -197,22 +461,27 @@ const wrestlerDropdown = document.getElementById("wrestlerDropdown");
 const teamdropdown = document.getElementById("teamdropdown");
 
 // add event listener to teamdropdown
-teamdropdown.addEventListener("change", function() {
-  const wrestlerName = wrestlerDropdown.value;
-  const wrestler = wrestlers.find(w => w.Name === wrestlerName);
+teamdropdown.addEventListener("change", () => {
+  const wrestler = wrestlers.find(wrestler => wrestler.Name === dropdown.value);
   if (wrestler) {
-    wrestler.Team = teamdropdown.value;
-    const selectedWrestler = wrestlers.find(wrestler => wrestler.Name === dropdown.value);
-    const lastName = selectedWrestler.Name.split(" ")[1].toLowerCase();
-  localStorage.setItem(`${lastName}team`, selectedWrestler.Team);}
+  wrestler.Team = teamdropdown.value;
+  const selectedWrestler = wrestlers.find(wrestler => wrestler.Name === dropdown.value);
+  const nameParts = selectedWrestler.Name.split(" ");
+  let firstName = nameParts[0].substring(0, 3).toLowerCase();
+  let lastName = nameParts.length > 1 ? nameParts[1].substring(0, 3).toLowerCase() : '';
+  localStorage.setItem(`${firstName}${lastName}team`, selectedWrestler.Team);
+}
 });
 
+// Create options for non-null or non-empty array items
 for(var i = 0; i < storedteams.length; i++) {
-    var opt = storedteams[i];
+  var opt = storedteams[i];
+  if (opt) {
     var el = document.createElement("option");
     el.textContent = opt;
     el.value = opt;
     teamdropdown.appendChild(el);
+  }
 };
 
 wrestlerDropdown.addEventListener("change", function() {
@@ -222,10 +491,14 @@ wrestlerDropdown.addEventListener("change", function() {
   // Update the points span with the selected wrestler's points
   pointsSpan.innerText = selectedWrestler ? selectedWrestler.Points : "";
 });
+
+
 ///////////////////////////////////////////////////////////////////
 const wrestlerInput = document.getElementById('wrestlerInput');
 const wrestlerList = document.getElementById('wrestlerList');
 const tableContainer = document.getElementById('tableContainer');
+
+let currentSortDirection = 'asc'; // Initialize sort direction
 
 // Display full table by default
 const table = generateTable(wrestlers);
@@ -258,29 +531,43 @@ function generateTable(data) {
     const tbody = document.createElement('tbody');
 
     // Create header row
-const headerRow = document.createElement('tr');
-for (const property in data[0]) {
-    const th = document.createElement('th');
-    th.textContent = property;
-    th.setAttribute('data-sort-direction', 'asc'); // add this line
-    th.addEventListener('click', function() {
-        const column = this.textContent;
-        const sortDirection = this.getAttribute('data-sort-direction'); // add this line
-        const sortedData = data.sort(function(a, b) {
-            if (sortDirection === 'asc') {
-                return a[column] > b[column] ? 1 : -1;
+    const headerRow = document.createElement('tr');
+    for (const property in data[0]) {
+        const th = document.createElement('th');
+        th.textContent = property;
+        th.setAttribute('data-sort-direction', 'asc');
+        th.addEventListener('click', function() {
+            const column = this.textContent;
+            const sortDirection = this.getAttribute('data-sort-direction');
+
+            // Update current sort direction
+            if (sortDirection === currentSortDirection) {
+                currentSortDirection = currentSortDirection === 'asc' ? 'desc' : 'asc';
             } else {
-                return a[column] < b[column] ? 1 : -1;
+                currentSortDirection = sortDirection;
             }
+
+            let sortedData;
+            if (currentSortDirection === 'asc') {
+                sortedData = data.sort(function(a, b) {
+                    return a[column] < b[column] ? 1 : -1;
+                });
+            } else {
+                sortedData = data.sort(function(a, b) {
+                    return a[column] > b[column] ? 1 : -1;
+                });
+            }
+
+            // Update sort direction attribute
+            this.setAttribute('data-sort-direction', currentSortDirection);
+
+            const table = generateTable(sortedData);
+            tableContainer.innerHTML = '';
+            tableContainer.appendChild(table);
         });
-        this.setAttribute('data-sort-direction', sortDirection === 'asc' ? 'desc' : 'asc'); // add this line
-        const table = generateTable(sortedData);
-        tableContainer.innerHTML = '';
-        tableContainer.appendChild(table);
-    });
-    headerRow.appendChild(th);
-}
-thead.appendChild(headerRow);
+        headerRow.appendChild(th);
+    }
+    thead.appendChild(headerRow);
 
     // Create data rows
     data.forEach(function(item) {
@@ -299,51 +586,39 @@ thead.appendChild(headerRow);
     return table;
 }
 
+document.getElementById("wrestlerList").style.display = "none";
+//Scoreboard//////////////////////////////////////
+// Create a dictionary to store the total points for each team
+var teamPoints = {};
 
-function sortTableByColumn(columnName, data, tbody) {
-    // Determine the data type of the column
-    let dataType = 'string';
-    if (columnName === 'Points') {
-        dataType = 'number';
+// Loop through the wrestlers array and add up the points for each team
+var teamPoints = {};
+
+// Loop through the wrestlers array and add up the points for each team
+for (var i = 0; i < wrestlers.length; i++) {
+  var wrestler = wrestlers[i];
+  if (wrestler.Team) {
+    if (wrestler.Team in teamPoints) {
+      teamPoints[wrestler.Team] += wrestler.Points;
+    } else {
+      teamPoints[wrestler.Team] = wrestler.Points;
     }
-
-    // Sort the data by the clicked column
-    data.sort(function(a, b) {
-        if (dataType === 'string') {
-            return a[columnName].localeCompare(b[columnName]);
-        } else {
-            return a[columnName] - b[columnName];
-        }
-    });
-
-    // Remove existing rows from the table
-    while (tbody.firstChild) {
-        tbody.removeChild(tbody.firstChild);
-    }
-
-    // Add sorted rows to the table
-    data.forEach(function(item) {
-        const row = document.createElement('tr');
-        for (const property in item) {
-            const cell = document.createElement('td');
-            cell.textContent = item[property];
-            row.appendChild(cell);
-        }
-        tbody.appendChild(row);
-    });
+  }
 }
 
-
-document.getElementById("wrestlerList").style.display = "none";
+// Display the total points for each team in HTML
+var resultsDiv = document.getElementById("results");
+for (var team in teamPoints) {
+  if (teamPoints.hasOwnProperty(team) && teamPoints[team]) {
+    var teamTotal = teamPoints[team];
+    var teamElement = document.createElement("div");
+    teamElement.textContent = team + ": " + teamTotal + " points";
+    resultsDiv.appendChild(teamElement);
+  }
+}
 
 
 
 </script>
 </body>
 </html>
-
-
-
-
-
-
