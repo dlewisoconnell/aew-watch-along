@@ -291,6 +291,7 @@ function displayTeams() {
 }
 
 function getOption() {
+  location.reload();
   const selectElement = document.querySelector('#select1');
   const output = selectElement.value;
   const inputVal = document.getElementById("nameOfTeam").value;
@@ -319,6 +320,7 @@ function getOption() {
 
   displayTeams();
   teamsContainer.style.display = "block";
+
 }
 
 
@@ -566,52 +568,5 @@ if (Object.keys(teamPoints).length === 0) {
       resultsDiv.appendChild(teamElement);
     }
   }
-};
-
-console.log(document.getElementById("results"));
-var resultsDiv = document.getElementById("results");
-
-fetch('/').then((response) => {
-  return response.text();
-}).then((html) => {
-  const parser = new DOMParser();
-  const doc = parser.parseFromString(html, 'text/html');
-  const videos = doc.querySelectorAll('li');
-  videos.forEach((video) => {
-    document.getElementById('videos').appendChild(video);
-  });
-}).catch((err) => {
-  console.error(err);
-});
-// Get all h2 elements
-const h2Elements = document.querySelectorAll('h2');
-
-// Get the 'wrestlerContainer' div
-const wrestlerContainer = document.querySelector('#wrestlerContainer');
-
-// Loop through each h2 element
-h2Elements.forEach((h2Element, index) => {
-  // Get the next sibling element of the current h2 element
-  const siblingElement = h2Element.nextElementSibling;
-
-  // Add the 'hidden' CSS class to all siblings of the current h2 element until the next h2 element is found
-  let nextSiblingElement = siblingElement;
-  while (nextSiblingElement && nextSiblingElement.tagName !== 'H2') {
-    nextSiblingElement.classList.add('hidden');
-    nextSiblingElement = nextSiblingElement.nextElementSibling;
-  }
-
-  // Add a click event listener to the h2 element
-  h2Element.addEventListener('click', () => {
-    // Toggle the 'hidden' CSS class on all siblings of the clicked h2 element until the next h2 element is found
-    let nextSiblingElement = siblingElement;
-    while (nextSiblingElement && nextSiblingElement.tagName !== 'H2') {
-      nextSiblingElement.classList.toggle('hidden');
-      nextSiblingElement = nextSiblingElement.nextElementSibling;
-    }
-
-  });
-});
-
-
+}
 

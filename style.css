@@ -1,8 +1,7 @@
 /* Set the font family and background color */
 body {
     font-family: Arial, sans-serif;
-    color: rgb(0, 0, 90);
-    background-color: rgb(0, 0, 90);
+    background-color: black;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -10,11 +9,23 @@ body {
   }
   
   /* Style the headings */
+  #gold {
+    background-image: linear-gradient(to bottom right, #CBA052, #D9B35E, #E8C06C, #F4D56F);
+  }
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+  
+  td, th {
+    border: 1px solid black;
+  }
+  
+
   #square {
-    background-color: #e7c9a9;
     padding: 25px;
     border: 100px;
-    border-color: rgb(0, 0, 90);
+    border-color:black;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -22,82 +33,25 @@ body {
   }
   
   h1 {
-    color: #e7c9a9;
-    background-color: rgb(0, 0, 90);
+    color: white;
+    background-color: black;
     text-align: center;
     margin-top: 20px;
     height: 50px;
   }
   
-  h2,
-  h3 {
-    color: #e7c9a9;
-    background-color: rgb(0, 0, 90);
+  h2 {
+    color: white;
+    background-color: black;
     text-align: center;
     margin-top: 20px;
     width: 300px;
   }
-  
-  /* Style the roster search bar and list */
-  #wrestlerInput {
-    margin: 20px 0;
-    width: 80%;
-    padding: 10px;
-    border-radius: 5px;
-    border: none;
-    box-shadow: 1px 1px 5px #888;
-  }
-  
-  #wrestlerList {
-    list-style: none;
-    padding: 0;
-    margin-top: 10px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  
-  #wrestlerList li {
-    background-color: #fff;
-    color: #333;
-    margin: 5px;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 1px 1px 5px #888;
-    width: 320px;
-    height: 320px;
-    overflow-y: hidden;
-    overflow-x: auto;
-  }
-  
-  .hidden {
-    display: none;
-  }
 
-  h2#roster-heading:focus + #wrestlerInput {
-    display: block;
-  }
-  
-  /* adjust the width and height of the squares for smaller screens */
-  @media (max-width: 720px) {
-    #wrestlerList li {
-      width: 50%;
-      height: 50%;
-    }
-  }
-  
-  /* adjust the height of the squares for even smaller screens */
-  @media (max-width: 480px) {
-    #wrestlerList li {
-      height: 320px;
-    }
-  }
-  
-  /* Make the wrestlerInput visible when Roster h2 is clicked */
-  h2#roster {
-    cursor: pointer;
-  }
-  
-  h2#roster:focus + #wrestlerInput {
-    display: block;
+  h3 {
+    color: white;
+    background-color: black;
+    text-align: center;
+    margin-top: 20px;
+    width: 75%;
   }
