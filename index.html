@@ -8,16 +8,16 @@
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-  <h1>Dynamite Watch-Along</h1>
+  <h1><img src="AEW-Logo.png" width="360" alt="All Elite Wrestling"><br>WATCH-ALONG GAME</h1>
   <div id="gold">
 
   <div id="square">
-    <h2>Rules</h2>
+    <h2>RULES</h2>
   </div>
   <div id="square">
-    <h2>Control Panel</h2>
+    <h2>CONTROL PANEL</h2>
     
-    <h3>Update Teams</h3>
+    <h3>UPDATE TEAMS</h3>
     <select id="select1">
       <option style="display:none;" selected>Team #</option>
       <option value="team1name">Team 1</option>
@@ -27,9 +27,8 @@
     </select>
     <input type="text" id="nameOfTeam" required="" placeholder="Team name" />
     <button onclick="getOption()">Submit</button>
-    <div id="allTeams"></div>
     
-    <h3>Update Wrestlers</h3>
+    <h3>UPDATE WRESTLERS</h3>
     <select id="wrestlerDropdown">
       <option style ="display:none;" selected>Select Wrestler</option>
     </select><span id="points"> Points</span>
@@ -38,12 +37,12 @@
       <option style="display:none;" selected>Select Team</option>
     </select><button onClick="updateValue()">Submit</button>
     
-    <h3>Clear Saved Data</h3>
+    <h3>CLEAR SAVED DATA</h3>
     <button onClick="clearValue()">Clear All</button>
   </div>
 
   <div id="square">
-    <h2 id="roster-heading">Scoreboard</h2>
+    <h2 id="roster-heading">SCOREBOARD</h2>
     <div id="results"></div>
     <label for="wrestlerInput">Search by Wrestler:</label>
     <input type="text" id="wrestlerInput"><p>
@@ -52,7 +51,7 @@
   </div>
 
   <div id="square">
-    <h2>Watch</h2>
+    <h2>WATCH</h2>
     <div id="dynamite"></div><p></p>
     <div id="thumbnails">
       <img src="" id="thumbnail-img">
@@ -60,7 +59,7 @@
   </div>
 
   <div id="square">
-    <h2>About</h2>
+    <h2>ABOUT</h2>
   </div></div>
 
   <script src="script.js"></script>

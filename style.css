@@ -1,6 +1,6 @@
 /* Set the font family and background color */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Bebas Neue', Arial, Helvetica, sans-serif;
     background-color: black;
     text-align: center;
     display: flex;
@@ -9,9 +9,10 @@ body {
   }
   
   /* Style the headings */
-  #gold {
-    background-image: linear-gradient(to bottom right, #CBA052, #D9B35E, #E8C06C, #F4D56F);
-  }
+#gold {
+  background: linear-gradient(130deg, white,#F9D77F, #F6D166, #C38C39, #AD752F,#AD752F, #C38C39, #DCA742, #EEBE50, #F9D77F, #AD752F);
+  background-size: cover;
+}
   table {
     border-collapse: collapse;
     border-spacing: 0;
@@ -37,7 +38,7 @@ body {
     background-color: black;
     text-align: center;
     margin-top: 20px;
-    height: 50px;
+  
   }
   
   h2 {
