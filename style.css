@@ -1,7 +1,7 @@
 /* Set the font family and background color */
 body {
     font-family: 'Bebas Neue', Arial, Helvetica, sans-serif;
-    font-size: 1em;
+    font-size: 1.1em;
     background-color: black;
     text-align: center;
     display: flex;
