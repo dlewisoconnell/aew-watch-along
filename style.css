@@ -15,7 +15,6 @@ body {
   border-radius: 5px;
   padding: 5px;
   margin: 10px;
-  width: 200px;
   background-color: #F9D77F;
   color: black;
 }
@@ -41,6 +40,11 @@ body {
 #gold {
   background: linear-gradient(130deg, white,#F9D77F, #F6D166, #C38C39, #AD752F,#AD752F, #C38C39, #DCA742, #EEBE50, #F9D77F, #AD752F);
   background-size: cover;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
   table {
     border-collapse: collapse;
@@ -91,7 +95,7 @@ body {
   }
 
   #fontskew {
-transform: scale(1.7, 1.2)
+transform: scale(1.5, 1)
   }
 
   ul {
@@ -108,6 +112,7 @@ transform: scale(1.7, 1.2)
     padding: 10px;
     margin: 10px;
     font-size: 1em;
+    color: black;
   }
 
   #addButton, #subButton {
