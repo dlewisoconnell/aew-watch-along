@@ -8,11 +8,19 @@
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-  <h1><img src="AEW-Logo.png" width="360" alt="All Elite Wrestling"><br>WATCH-ALONG GAME</h1>
+  <h1><img src="AEW-Logo.png" width="360" alt="All Elite Wrestling">
+  <br><div id=fontskew>WATCH-ALONG GAME</div></h1>
   <div id="gold">
 
   <div id="square">
-    <h2>RULES</h2>
+    <h2>HOW TO PLAY</h2>
+<ul><li>CREATE UP TO FOUR TEAMS</li>
+  <li>DRAFT THE AEW ROSTER TO TEAMS</li>
+  <li>WATCH AEW AND UPDATE THE CONTROL PANEL</li>
+  <li>+ 1 POINT FOR EVERY VICTORY</li>
+  <li>+ 1 BONUS POINT FOR TITLE WIN/DEFENSE</li>
+  <li>+ 1 ADDITIONAL POINT IF IT'S ON PPV</li>
+  <li>CHECK OUT THE SCOREBOARD FOR RESULTS</li></ul>
   </div>
   <div id="square">
     <h2>CONTROL PANEL</h2>
@@ -27,12 +35,13 @@
     </select>
     <input type="text" id="nameOfTeam" required="" placeholder="Team name" />
     <button onclick="getOption()">Submit</button>
+    <div id="allteams"></div>
     
     <h3>UPDATE WRESTLERS</h3>
     <select id="wrestlerDropdown">
       <option style ="display:none;" selected>Select Wrestler</option>
-    </select><span id="points"> Points</span>
-    <button id="addButton">+</button><button id="subButton">-</button><br>
+    </select><p><span id="points"> Points</span>
+    <button id="addButton">+1</button><button id="subButton">-1</button><br>
     <select id="teamdropdown">
       <option style="display:none;" selected>Select Team</option>
     </select><button onClick="updateValue()">Submit</button>

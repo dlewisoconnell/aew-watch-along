@@ -288,6 +288,9 @@ function displayTeams() {
       teamsContainer.appendChild(teamElement);
     }
   }
+  
+  // display the teamsContainer
+  teamsContainer.style.display = "block";
 }
 
 function getOption() {
