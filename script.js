@@ -618,3 +618,14 @@ async function getThumbnails() {
   document.getElementById('thumbnails').innerHTML = data;
 }
 getThumbnails();
+
+const scoreboardBtn = document.getElementById('scoreboard-btn');
+const scoreboardContainer = document.getElementById('scoreboard-container');
+
+scoreboardBtn.addEventListener('click', function() {
+  if (scoreboardContainer.style.display === 'none') {
+    scoreboardContainer.style.display = 'block';
+  } else {
+    scoreboardContainer.style.display = 'none';
+  }
+});

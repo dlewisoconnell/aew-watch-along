@@ -8,51 +8,7 @@ body {
     align-items: center;
     overflow-x: hidden;
   }
-
-  @media screen and (min-width: 768px) {
-    body {
-      background-color: lightgreen;
-
-    }
-    
-    #gold {
-        background: linear-gradient(130deg, white,#F9D77F, #F6D166, #C38C39, #AD752F,#AD752F, #C38C39, #DCA742, #EEBE50, #F9D77F, #AD752F);
-        background-size: cover;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        min-width: 768px;
-      }
-      
-      #square{
-        width: calc(50% - 10px);
-        position: relative;
-        top: 0;
-        left: 0;
-        margin-bottom: 20px;
-      }
-      
-      #square2 {
-
-        position: relative;
-        top: 0;
-        right: 0;
-      }
-      
-      #square3 {
-
-        position: relative;
-        bottom: 0;
-        margin-top: auto;
-      }
-
-      h2, h3 {
-        max-width: 300px;
-      }
-
-
-    }
-
+  
   .thumbnails-container {
     display: flex;
     flex-wrap: nowrap;
@@ -88,9 +44,7 @@ body {
 }
 
 #select1, #wrestlerDropdown, #teamdropdown {
-  appearance: none;
-  -moz-appearance: none;
-  -webkit-appearance: none;
+
   background-image: url('dropdown-arrow.svg');
   background-repeat: no-repeat;
   background-position: right 5px center;
@@ -118,19 +72,21 @@ body {
   }
   
 
-  #square, #square2, #square3 {
+  #square, #square2 {
     padding: 25px;
     border: 100px;
     border-color:black;
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 75%;
-    margin-bottom: 0;
-    padding-bottom: 0;
-    padding-top: 0;
+    width: 320px;
+    align-self: flex-start; 
+    
   }
 
+  #scoreboard-container {
+    display: none;
+  }
   
   h1 {
     color: white;
@@ -144,7 +100,7 @@ body {
     color: white;
     background-color: black;
     text-align: center;
-    width: 320px;;
+    width: 320px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -156,7 +112,7 @@ body {
     color: white;
     background-color: black;
     text-align: center;
-    width: 75%;
+   width:270px;
   }
 
   #fontskew {
