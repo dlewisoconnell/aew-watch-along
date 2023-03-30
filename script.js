@@ -360,7 +360,7 @@ if (dayOfWeek === 2) { // Tuesday
 if (dayOfWeek === 4) { 
   document.getElementById("rampage").innerHTML = "AEW Rampage is on tomorrow!";
 } else if (dayOfWeek === 5) { 
-  document.getElementById("dynamite").innerHTML = "AEW Rampage is on tonight!";
+  document.getElementById("rampage").innerHTML = "AEW Rampage is on tonight!";
 } else {
   const daysUntilWednesday = daysUntilDayOfWeek("Friday");
   document.getElementById("dynamite").innerHTML = "There are " + daysUntilWednesday + " days until AEW Rampge!";
@@ -612,20 +612,15 @@ if (Object.keys(teamPoints).length === 0) {
   resultsDiv.appendChild(tableScoreboard);
 }
 
-async function getThumbnails() {
-  const response = await fetch('http://localhost:3000');
-  const data = await response.text();
-  document.getElementById('thumbnails').innerHTML = data;
-}
-getThumbnails();
-
 const scoreboardBtn = document.getElementById('scoreboard-btn');
 const scoreboardContainer = document.getElementById('scoreboard-container');
 
 scoreboardBtn.addEventListener('click', function() {
   if (scoreboardContainer.style.display === 'none') {
     scoreboardContainer.style.display = 'block';
+    scoreboardBtn.textContent = 'Hide Scores';
   } else {
     scoreboardContainer.style.display = 'none';
+    scoreboardBtn.textContent = 'View Scores';
   }
 });
