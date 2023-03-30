@@ -11,6 +11,10 @@ body {
 
   }
 
+#noScroll {
+    overflow-x: hidden;
+  }
+
 
   #select1, #wrestlerDropdown, #teamdropdown, input {
   font-size: 1em;
