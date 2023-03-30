@@ -366,7 +366,7 @@ if (dayOfWeek === 4) {
   document.getElementById("dynamite").innerHTML = "There are " + daysUntilWednesday + " days until AEW Rampge!";
 }
 
-document.getElementById("ppv").innerHTML = "There are " + days + " days until AEW Double or Nothing on PPV!"
+document.getElementById("ppv").innerHTML = "There are " + days + " days until AEW Double or Nothing on PPV!"; // corrected element id
 
 
 //Youtube API/////////////////////////////////////////////////
