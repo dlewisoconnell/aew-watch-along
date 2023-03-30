@@ -8,21 +8,21 @@
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body><div id="noScroll">
-  <h1><img src="AEW-Logo.png" width="360" alt="All Elite Wrestling">
+  <h1><img src="AEW-Logo.png" width="360px" alt="All Elite Wrestling">
   <br><div id=fontskew>WATCH-ALONG GAME</div></h1>
   <div id="gold">
+
 
   <div id="square">
     <h2>HOW TO PLAY</h2>
 <ul><li>CREATE UP TO FOUR TEAMS</li>
-  <li>DRAFT THE AEW ROSTER TO TEAMS</li>
+  <li>DRAFT THE AEW ROSTER TO YOUR TEAMS</li>
   <li>WATCH AEW AND UPDATE THE CONTROL PANEL</li>
   <li>+ 1 POINT FOR EVERY VICTORY</li>
   <li>+ 1 BONUS POINT FOR TITLE WIN/DEFENSE</li>
-  <li>+ 1 ADDITIONAL POINT IF IT'S ON PPV</li>
+  <li>+ 1 BONUS POINT IF IT'S ON PPV</li>
   <li>CHECK OUT THE SCOREBOARD FOR RESULTS</li></ul>
-  </div>
-  <div id="square">
+
     <h2>CONTROL PANEL</h2>
     
     <h3>UPDATE TEAMS</h3>
@@ -35,7 +35,6 @@
     </select>
     <input type="text" id="nameOfTeam" required="" placeholder="Team name" />
     <button onclick="getOption()">Submit</button>
-    <div id="allteams"></div>
     
     <h3>UPDATE WRESTLERS</h3>
     <select id="wrestlerDropdown">
@@ -43,15 +42,15 @@
     </select><p><span id="points"> Points</span>
     <button id="addButton">+1</button><button id="subButton">-1</button><br>
     <select id="teamdropdown">
-      <option style="display:none;" selected>Select Team</option>
+    <option style="display:none;" selected>Select Team</option>
     </select><button onClick="updateValue()">Submit</button>
-    
+
     <h3>CLEAR SAVED DATA</h3>
     <button onClick="clearValue()">Clear All</button>
-  </div>
+
 
   <div id="square">
-    <h2 id="roster-heading">SCOREBOARD</h2>
+    <h2>SCOREBOARD</h2>
     <div id="results"></div><p></p>
     <label for="wrestlerInput">Search by Wrestler:</label>
     <input type="text" id="wrestlerInput"><p>
@@ -59,22 +58,27 @@
     <div id="tableContainer"></div>
   </div>
 
-  <div id="square">
-    <h2>WATCH</h2>
-    <div id="dynamite"></div><p></p>
-    <div id="thumbnails">
-      <img src="" id="thumbnail-img">
-    </div>
+  <h2>COUNTDOWN</h2>
+  <div id="dynamite"></div><p></p>
+  <div id="rampage"></div><p></p>
+  <div id="ppv"></div>
+
+  <h2>WATCH ON YOUTUBE</h2>
+  <div id="thumbnails" style="width: 100%; height: 180px; overflow-x: scroll;">
+    <img src="" id="thumbnail-img" style="display: flex; flex-direction: row;">
   </div>
 
-  <div id="square">
+<div id="square">
     <h2>ABOUT</h2>
+    <img src="danny_BW_NB.jpg"><br>
+    AEW Watch-Along Game was created by aspiring web developer and wrestling fan Daniel O'Connell.<br>
+    <button onclick="window.location.href='http://www.linkedin.com/in/daniel-o-connell-351860265/';">HIRE ME!</button>
   </div></div>
-</div>
+
 
   <script src="script.js"></script>
   <script>
-      async function getThumbnails() {
+          async function getThumbnails() {
         const response = await fetch('http://localhost:3000');
         const data = await response.text();
         document.getElementById('thumbnails').innerHTML = data;

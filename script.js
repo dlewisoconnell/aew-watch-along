@@ -12,7 +12,7 @@ var wrestlers =
     "Team": localStorage.getItem("adapaiteam")
   },{
     "Name": "Alex Reynolds",
-    "Points": parseInt(localStorage.getItem("alexreypoints")),
+    "Points": parseInt(localStorage.getItem("alereypoints")),
     "Team": localStorage.getItem("alereyteam")
   },{
     "Name": "Anthony Bowens",
@@ -115,10 +115,6 @@ var wrestlers =
     "Points": parseInt(localStorage.getItem("jonmoxpoints")),
     "Team": localStorage.getItem("jonmoxteam")
   },{
-    "Name": "Juice Robinson",
-    "Points": parseInt(localStorage.getItem("juirobpoints")),
-    "Team": localStorage.getItem("juirobteam")
-  },{
     "Name": "Jungle Boy",
     "Points": parseInt(localStorage.getItem("junboypoints")),
     "Team": localStorage.getItem("junboyteam")
@@ -206,10 +202,6 @@ var wrestlers =
     "Name": "Tay Melo",
     "Points": parseInt(localStorage.getItem("taymelpoints")),
     "Team": localStorage.getItem("taymelteam")
-  },{
-    "Name": "Taya Valkrie",
-    "Points": parseInt(localStorage.getItem("tayvalpoints")),
-    "Team": localStorage.getItem("rayvalteam")
   },{
     "Name": "Toni Storm",
     "Points": parseInt(localStorage.getItem("tonstopoints")),
@@ -349,6 +341,12 @@ function daysUntilDayOfWeek(dayOfWeek) {
 
 const today = new Date();
 const dayOfWeek = today.getDay();
+const targetDate = new Date('2023-5-28');
+
+const timeDiff = targetDate.getTime() - today.getTime();
+
+const days = Math.ceil(timeDiff / (1000 * 3600 * 24));
+
 
 if (dayOfWeek === 2) { // Tuesday
   document.getElementById("dynamite").innerHTML = "AEW Dynamite is on tomorrow!";
@@ -358,6 +356,18 @@ if (dayOfWeek === 2) { // Tuesday
   const daysUntilWednesday = daysUntilDayOfWeek("Wednesday");
   document.getElementById("dynamite").innerHTML = "There are " + daysUntilWednesday + " days until AEW Dynamite!";
 }
+
+if (dayOfWeek === 4) { 
+  document.getElementById("rampage").innerHTML = "AEW Rampage is on tomorrow!";
+} else if (dayOfWeek === 5) { 
+  document.getElementById("dynamite").innerHTML = "AEW Rampage is on tonight!";
+} else {
+  const daysUntilWednesday = daysUntilDayOfWeek("Friday");
+  document.getElementById("dynamite").innerHTML = "There are " + daysUntilWednesday + " days until AEW Rampge!";
+}
+
+document.getElementById("ppv").innerHTML = "There are " + days + " days until AEW Double or Nothing on PPV!"
+
 
 //Youtube API/////////////////////////////////////////////////
 
@@ -452,8 +462,8 @@ const tableContainer = document.getElementById('tableContainer');
 let currentSortDirection = 'asc'; // Initialize sort direction
 
 // Display full table by default
-const table = generateTable(wrestlers);
-tableContainer.appendChild(table);
+const defaultTable = generateTable(wrestlers);
+tableContainer.appendChild(defaultTable);
 
 // Autocomplete search function
 wrestlerInput.addEventListener('input', function() {
@@ -471,9 +481,9 @@ wrestlerInput.addEventListener('input', function() {
     });
 
     // Generate table with filtered data
-    const table = generateTable(filteredWrestlers);
+    const filteredTable = generateTable(filteredWrestlers);
     tableContainer.innerHTML = '';
-    tableContainer.appendChild(table);
+    tableContainer.appendChild(filteredTable);
 });
 
 function generateTable(data) {
@@ -512,9 +522,9 @@ function generateTable(data) {
             // Update sort direction attribute
             this.setAttribute('data-sort-direction', currentSortDirection);
 
-            const table = generateTable(sortedData);
+            const sortedTable = generateTable(sortedData);
             tableContainer.innerHTML = '';
-            tableContainer.appendChild(table);
+            tableContainer.appendChild(sortedTable);
         });
         headerRow.appendChild(th);
     }
@@ -539,37 +549,72 @@ function generateTable(data) {
 
 document.getElementById("wrestlerList").style.display = "none";
 //Scoreboard//////////////////////////////////////
-// Create a dictionary to store the total points for each team
+const teamPoints = {};
+if (localStorage.getItem("team1name")) {
+  teamPoints[localStorage.getItem("team1name")] = 0;
+}
+if (localStorage.getItem("team2name")) {
+  teamPoints[localStorage.getItem("team2name")] = 0;
+}
+if (localStorage.getItem("team3name")) {
+  teamPoints[localStorage.getItem("team3name")] = 0;
+}
+if (localStorage.getItem("team4name")) {
+  teamPoints[localStorage.getItem("team4name")] = 0;
+}
 
-// Loop through the wrestlers array and add up the points for each team
-var teamPoints = {};
-
-// Loop through the wrestlers array and add up the points for each team
-for (var i = 0; i < wrestlers.length; i++) {
-  var wrestler = wrestlers[i];
-  if (wrestler.Team) {
-    if (wrestler.Team in teamPoints) {
-      teamPoints[wrestler.Team] += wrestler.Points;
-    } else {
-      teamPoints[wrestler.Team] = wrestler.Points;
-    }
+for (const wrestler of wrestlers) {
+  const { Team, Points } = wrestler;
+  if (teamPoints.hasOwnProperty(Team)) {
+    teamPoints[Team] += Points;
   }
 }
 
-// Display the total points for each team in HTML
-var resultsDiv = document.getElementById("results");
+// Create table for team points
+const tableScoreboard = document.createElement("table");
+const theadScoreboard = document.createElement("thead");
+const tbodyScoreboard = document.createElement("tbody");
+
+// Create header row
+const headerRowScoreboard = document.createElement("tr");
+const teamHeaderScoreboard = document.createElement("th");
+const pointsHeaderScoreboard = document.createElement("th");
+teamHeaderScoreboard.textContent = "Team";
+pointsHeaderScoreboard.textContent = "Points";
+headerRowScoreboard.appendChild(teamHeaderScoreboard);
+headerRowScoreboard.appendChild(pointsHeaderScoreboard);
+theadScoreboard.appendChild(headerRowScoreboard);
+
+// Create data rows
+for (const team in teamPoints) {
+  if (teamPoints.hasOwnProperty(team) && team) {
+    const teamTotal = teamPoints[team];
+    const teamRow = document.createElement("tr");
+    const teamCell = document.createElement("td");
+    const pointsCell = document.createElement("td");
+    teamCell.textContent = team;
+    pointsCell.textContent = teamTotal;
+    teamRow.appendChild(teamCell);
+    teamRow.appendChild(pointsCell);
+    tbodyScoreboard.appendChild(teamRow);
+  }
+}
+
+tableScoreboard.appendChild(theadScoreboard);
+tableScoreboard.appendChild(tbodyScoreboard);
+
+const resultsDiv = document.getElementById("results");
 if (Object.keys(teamPoints).length === 0) {
-  var noScoreElement = document.createElement("div");
+  const noScoreElement = document.createElement("div");
   noScoreElement.textContent = "No Score Yet";
   resultsDiv.appendChild(noScoreElement);
 } else {
-  for (var team in teamPoints) {
-    if (teamPoints.hasOwnProperty(team) && teamPoints[team]) {
-      var teamTotal = teamPoints[team];
-      var teamElement = document.createElement("div");
-      teamElement.textContent = team + ": " + teamTotal + " points";
-      resultsDiv.appendChild(teamElement);
-    }
-  }
+  resultsDiv.appendChild(tableScoreboard);
 }
 
+async function getThumbnails() {
+  const response = await fetch('http://localhost:3000');
+  const data = await response.text();
+  document.getElementById('thumbnails').innerHTML = data;
+}
+getThumbnails();

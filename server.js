@@ -1,5 +1,5 @@
 const express = require('express');
-const {google} = require('googleapis');
+const { google } = require('googleapis');
 const cors = require('cors');
 const path = require('path');
 
@@ -11,23 +11,29 @@ const youtube = google.youtube({
   auth: 'AIzaSyCMpF4zF89ztV2dDffyRkYjGn1C9jhf6uo'
 });
 
-app.get('/', async (req, res) => {
+app.get('/thumbnails', async (req, res) => {
   try {
     const response = await youtube.search.list({
       part: 'snippet',
       q: 'aew dynamite',
       type: 'video',
-      channelId: 'UCFN4JkGP_bVhAdBsoV9xftA', // Official AEW channel ID
-      maxResults: 5, // Return 5 most recent videos
+      channelId: 'UCFN4JkGP_bVhAdBsoV9xftA',
+      maxResults: 5,
     });
 
-    const videos = response.data.items.map((item) => {
+    const thumbnails = response.data.items.map((item) => {
       const videoId = item.id.videoId;
-      const thumbnailUrl = item.snippet.thumbnails.medium.url;
-      return `<a href="https://www.youtube.com/watch?v=${videoId}"><img src="${thumbnailUrl}" /></a>`;
+      const thumbnailUrl = item.snippet.thumbnails.default.url;
+      return `<img class="thumbnail" src="${thumbnailUrl}" data-video-id="${videoId}" />`;
     });
 
-    res.send(videos.join(''));
+    const html = `
+      <div class="thumbnails-container">
+        ${thumbnails.join('')}
+      </div>
+    `;
+
+    res.send(html);
   } catch (err) {
     console.error(err);
     res.status(500).send('Error retrieving videos from YouTube API.');
