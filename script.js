@@ -341,7 +341,15 @@ function daysUntilDayOfWeek(dayOfWeek) {
 
 const today = new Date();
 const dayOfWeek = today.getDay();
-const targetDate = new Date('2023-05-28');
+const targetDate = new Date();
+targetDate.setFullYear(2023);
+targetDate.setMonth(4);
+targetDate.setDate(28);
+targetDate.setHours(0);
+targetDate.setMinutes(0);
+targetDate.setSeconds(0);
+targetDate.setMilliseconds(0);
+
 
 const timeDiff = targetDate.getTime() - today.getTime();
 
