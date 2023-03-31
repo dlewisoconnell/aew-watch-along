@@ -620,15 +620,3 @@ if (Object.keys(teamPoints).length === 0) {
   resultsDiv.appendChild(tableScoreboard);
 }
 
-const scoreboardBtn = document.getElementById('scoreboard-btn');
-const scoreboardContainer = document.getElementById('scoreboard-container');
-
-scoreboardBtn.addEventListener('click', function() {
-  if (scoreboardContainer.style.display === 'none') {
-    scoreboardContainer.style.display = 'block';
-    scoreboardBtn.textContent = 'Hide Scores';
-  } else {
-    scoreboardContainer.style.display = 'none';
-    scoreboardBtn.textContent = 'View Scores';
-  }
-});
