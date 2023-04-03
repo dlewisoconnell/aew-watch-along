@@ -58,6 +58,8 @@ body {
   align-items: center;
   flex-direction: row;
   flex-wrap: wrap;
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
   table {
     border-collapse: collapse;
@@ -81,6 +83,8 @@ body {
     align-items: center;
     width: 320px;
     align-self: flex-start; 
+    margin-bottom: 0;
+    padding-bottom: 0;
     
   }
 
