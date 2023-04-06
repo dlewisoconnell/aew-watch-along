@@ -7,9 +7,9 @@ var wrestlers =
     "Points": parseInt(localStorage.getItem("adacolpoints")),
     "Team": localStorage.getItem("adacolteam")
   },{
-    "Name": "Adam Page",
-    "Points": parseInt(localStorage.getItem("adapagpoints")),
-    "Team": localStorage.getItem("adapagteam")
+    "Name": "Adam Paige",
+    "Points": parseInt(localStorage.getItem("adapaipoints")),
+    "Team": localStorage.getItem("adapaiteam")
   },{
     "Name": "Alex Reynolds",
     "Points": parseInt(localStorage.getItem("alereypoints")),
@@ -23,13 +23,13 @@ var wrestlers =
     "Points": parseInt(localStorage.getItem("ausgunpoints")),
     "Team": localStorage.getItem("ausgunteam")
   },{
-    "Name": "Britt Baker",
-    "Points": parseInt(localStorage.getItem("bribakpoints")),
-    "Team": localStorage.getItem("bribakteam")
-  },{
     "Name": "Brodie King",
     "Points": parseInt(localStorage.getItem("brokinpoints")),
     "Team": localStorage.getItem("brokinteam")
+  },{
+    "Name": "Britt Baker",
+    "Points": parseInt(localStorage.getItem("bribakpoints")),
+    "Team": localStorage.getItem("bribakteam")
   },{
     "Name": "Bryan Danielson",
     "Points": parseInt(localStorage.getItem("brydanpoints")),
@@ -42,10 +42,6 @@ var wrestlers =
     "Name": "Cash Wheeler",
     "Points": parseInt(localStorage.getItem("caswhepoints")),
     "Team": localStorage.getItem("caswheteam")
-  },{
-    "Name": "Chris Jericho",
-    "Points": parseInt(localStorage.getItem("clacaspoints")),
-    "Team": localStorage.getItem("clacasteam")
   },{
     "Name": "Chuck Taylor",
     "Points": parseInt(localStorage.getItem("chutaypoints")),
@@ -63,29 +59,33 @@ var wrestlers =
     "Points": parseInt(localStorage.getItem("daxharpoints")),
     "Team": localStorage.getItem("daxharteam")
   },{
+    "Name": "Danhausen",
+    "Points": parseInt(localStorage.getItem("danpoints")),
+    "Team": localStorage.getItem("danteam")
+  },{
     "Name": "Daniel Garcia",
     "Points": parseInt(localStorage.getItem("dangarpoints")),
     "Team": localStorage.getItem("dangarteam")
-  },{
-    "Name": "Darby Allin",
-    "Points": parseInt(localStorage.getItem("darallpoints")),
-    "Team": localStorage.getItem("darallteam")
   },{
     "Name": "Darius Martin",
     "Points": parseInt(localStorage.getItem("darmarpoints")),
     "Team": localStorage.getItem("darmarteam")
   },{
+    "Name": "Darby Allin",
+    "Points": parseInt(localStorage.getItem("darallpoints")),
+    "Team": localStorage.getItem("darallteam")
+  },{
     "Name": "Evil Uno",
     "Points": parseInt(localStorage.getItem("eviunopoints")),
-    "Team": localStorage.getItem("eviunoteam")
+    "Team": localStorage.getItem("eviunolteam")
   },{
     "Name": "Ethan Page",
     "Points": parseInt(localStorage.getItem("ethpagpoints")),
-    "Team": localStorage.getItem("ethpagteam")
+    "Team": localStorage.getItem("ethpaglteam")
   },{
     "Name": "Hikaru Shida",
     "Points": parseInt(localStorage.getItem("hikshipoints")),
-    "Team": localStorage.getItem("hikshiteam")
+    "Team": localStorage.getItem("hikshilteam")
   },{
     "Name": "Hook",
     "Points": parseInt(localStorage.getItem("hoopoints")),
@@ -94,10 +94,6 @@ var wrestlers =
     "Name": "Jamie Hayter",
     "Points": parseInt(localStorage.getItem("jamhaypoints")),
     "Team": localStorage.getItem("jamhayteam")
-  },{
-    "Name": "Jay White",
-    "Points": parseInt(localStorage.getItem("jaywhipoints")),
-    "Team": localStorage.getItem("jaywhiteam")
   },{
     "Name": "Jay Lethal",
     "Points": parseInt(localStorage.getItem("jayletpoints")),
@@ -127,13 +123,9 @@ var wrestlers =
     "Points": parseInt(localStorage.getItem("kenomepoints")),
     "Team": localStorage.getItem("kenometeam")
   },{
-    "Name": "Konosuke Takeshita",
-    "Points": parseInt(localStorage.getItem("kontakpoints")),
-    "Team": localStorage.getItem("kontakteam")
-  },{
     "Name": "Malakai Black",
     "Points": parseInt(localStorage.getItem("malblapoints")),
-    "Team": localStorage.getItem("malblateam")
+    "Team": localStorage.getItem("malbalteam")
   },{
     "Name": "Matt Jackson",
     "Points": parseInt(localStorage.getItem("matjacpoints")),
@@ -147,6 +139,10 @@ var wrestlers =
     "Points": parseInt(localStorage.getItem("mjfpoints")),
     "Team": localStorage.getItem("mjfteam")
   },{
+    "Name": "Nayla Rose",
+    "Points": parseInt(localStorage.getItem("nayrospoints")),
+    "Team": localStorage.getItem("nayrosteam")
+  },{
     "Name": "Nick Jackson",
     "Points": parseInt(localStorage.getItem("nicjacpoints")),
     "Team": localStorage.getItem("nicjacteam")
@@ -158,6 +154,10 @@ var wrestlers =
     "Name": "Penta El Zero M",
     "Points": parseInt(localStorage.getItem("penelpoints")),
     "Team": localStorage.getItem("penelteam")
+  },{
+    "Name": "Penelope Ford",
+    "Points": parseInt(localStorage.getItem("penforpoints")),
+    "Team": localStorage.getItem("penforteam")
   },{
     "Name": "Powerhouse Hobbes",
     "Points": parseInt(localStorage.getItem("powhobpoints")),
@@ -196,8 +196,12 @@ var wrestlers =
     "Team": localStorage.getItem("stiteam")
   },{
     "Name": "Stu Grayson",
-    "Points": parseInt(localStorage.getItem("stugrapoints")),
-    "Team": localStorage.getItem("stugrateam")
+    "Points": parseInt(localStorage.getItem("stugrepoints")),
+    "Team": localStorage.getItem("stugreteam")
+  },{
+    "Name": "Tay Melo",
+    "Points": parseInt(localStorage.getItem("taymelpoints")),
+    "Team": localStorage.getItem("taymelteam")
   },{
     "Name": "Toni Storm",
     "Points": parseInt(localStorage.getItem("tonstopoints")),
@@ -315,6 +319,79 @@ function getOption() {
 }
 
 
+
+
+////////////////////////////////////////////////////////////////////////
+
+function daysUntilDayOfWeek(dayOfWeek) {
+  const today = new Date().getDay();
+  const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  const dayIndex = days.indexOf(dayOfWeek);
+
+  if (dayIndex < 0) {
+    throw new Error("Invalid day of week: " + dayOfWeek);
+  }
+
+  if (dayIndex >= today) {
+    return dayIndex - today;
+  } else {
+    return 7 - (today - dayIndex);
+  }
+}
+
+const today = new Date();
+const dayOfWeek = today.getDay();
+const targetDate = new Date();
+targetDate.setFullYear(2023);
+targetDate.setMonth(4);
+targetDate.setDate(28);
+targetDate.setHours(0);
+targetDate.setMinutes(0);
+targetDate.setSeconds(0);
+targetDate.setMilliseconds(0);
+
+
+const timeDiff = targetDate.getTime() - today.getTime();
+
+const days = Math.ceil(timeDiff / (1000 * 3600 * 24));
+
+
+if (dayOfWeek === 2) { // Tuesday
+  document.getElementById("dynamite").innerHTML = "AEW Dynamite is on tomorrow!";
+} else if (dayOfWeek === 3) { // Wednesday
+  document.getElementById("dynamite").innerHTML = "It's Wednesday, you know what that means!";
+} else {
+  const daysUntilWednesday = daysUntilDayOfWeek("Wednesday");
+  document.getElementById("dynamite").innerHTML = "There are " + daysUntilWednesday + " days until AEW Dynamite!";
+}
+
+if (dayOfWeek === 4) { 
+  document.getElementById("rampage").innerHTML = "AEW Rampage is on tomorrow!";
+} else if (dayOfWeek === 5) { 
+  document.getElementById("rampage").innerHTML = "AEW Rampage is on tonight!";
+} else {
+  const daysUntilWednesday = daysUntilDayOfWeek("Friday");
+  document.getElementById("dynamite").innerHTML = "There are " + daysUntilWednesday + " days until AEW Rampge!";
+}
+
+document.getElementById("ppv").innerHTML = "There are " + days + " days until AEW Double or Nothing on PPV!"; // corrected element id
+
+
+//Youtube API/////////////////////////////////////////////////
+
+// fetch("https://youtube.googleapis.com/youtube/v3/search?part=snippet&channelId=UCFN4JkGP_bVhAdBsoV9xftA&maxResults=5&key=AIzaSyDr12JkOMgMnB-KjbN2_n5HZ_NRRcjEEKg")
+// .then((result)=>{
+//  return result.json()
+// }).then((data)=>{
+//  let videos = data.items
+//  let videoContainer = document.querySelector(".youtube-container")
+//  for (video of videos){
+//   console.log(video.snippet.thumbnails.high.url)
+//   videoContainer.innerHTML += 
+//   `<center><p><img src=${video.snippet.thumbnails.default.url}><br>
+//   ${video.snippet.title}<p></center`
+// }});n 
+///////////////////////////////////////////////////////////////////
 const dropdown = document.getElementById("wrestlerDropdown");
 const button = document.getElementById("addButton");
 const subbutton = document.getElementById("subButton");
