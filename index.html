@@ -49,6 +49,7 @@
     <button onClick="clearValue()">Clear All</button>
   </div>
 
+
   <div id="square">
     <h2>SCOREBOARD</h2>
     <div id="scoreboard-container">
@@ -59,18 +60,8 @@
     <div id="tableContainer"></div>
   </div>
 </div>
+
 <div id="square">
-    <h2>COUNTDOWN</h2>
-    <div id="dynamite"></div><p></p>
-    <div id="rampage"></div><p></p>
-    <div id="ppv"></div>
-  
-    <h2>WATCH ON YOUTUBE</h2>
-    <div id="thumbnails" style="width: 100%; height: 250px; overflow-x: scroll;">
-      <img src="" id="thumbnail-img" style="display: flex; flex-direction: row;">
-    
-    </div></div>
-    <div id="square">
     <h2>ABOUT</h2>
     <img src="danny_BW_NB.jpg"><br>
     AEW Watch-Along Game was created by aspiring web developer and wrestling fan Daniel O'Connell.<br>
@@ -80,13 +71,5 @@
 <div id="disclaimer">Disclaimer: This website is not affiliated with All Elite Wrestling.</div>
 
   <script src="script.js"></script>
-  <script>
-          async function getThumbnails() {
-        const response = await fetch('http://localhost:3000');
-        const data = await response.text();
-        document.getElementById('thumbnails').innerHTML = data;
-      }
-      getThumbnails();
-  </script>
 </body>
 </html>
